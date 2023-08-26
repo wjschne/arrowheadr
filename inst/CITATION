@@ -1,0 +1,6 @@
+bibentry(
+  bibtype  = "Manual",
+  title    = "arrowheadr: Custom arrows for ggplot2 via ggarrow",
+  author   = "W. Joel Schneider",
+  year     = 2023,
+)
