@@ -112,7 +112,7 @@
 <span></span>
 <span><span class="va">base_plot</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">triangle</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-triangle-1.png" width="100%"></p>
 <p>You can make any shape you want. I made arrowheadr to facilitate getting complex shapes into the box that ggarrow functions expect.</p>
 <p>The arrowheadr functions do not depend on ggarrow, but were designed to be used with ggarrow. The main <code>arrow_head_*</code> functions return a matrix with columns <code>x</code> and <code>y</code> to create a polygon fitting in a square from −1 to 1 on both the <em>x</em> and <em>y</em> axes.</p>
 <p>The main <code>arrow_head_*</code> functions have an optional <code>plot</code> argument to show what polygon will be used:</p>
@@ -251,28 +251,28 @@
 </h1>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-defaultarrow-1.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="skinny-sharp-deltoid">Skinny Sharp Deltoid<a class="anchor" aria-label="anchor" href="#skinny-sharp-deltoid"></a>
 </h1>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, length_head <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+<p><img src="reference/figures/README-skinnysharpdeltoid-1.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="skinny-rounded-deltoid">Skinny Rounded Deltoid<a class="anchor" aria-label="anchor" href="#skinny-rounded-deltoid"></a>
 </h1>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">2.7</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
+<p><img src="reference/figures/README-skinnyrounddeltoid-1.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="rounded-spade">Rounded spade<a class="anchor" aria-label="anchor" href="#rounded-spade"></a>
 </h1>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="100%"></p>
+<p><img src="reference/figures/README-spade-1.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="sharp-barbs">Sharp Barbs<a class="anchor" aria-label="anchor" href="#sharp-barbs"></a>
@@ -280,11 +280,11 @@
 <p>Mimics the <code>latex'</code> arrowhead from tikz.arrows</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="100%"></p>
+<p><img src="reference/figures/README-latexprime-1.png" width="100%"></p>
 <p>Mimics the regular <code>latex</code> arrowhead from tikz.arrows</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>undercontrols <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
+<p><img src="reference/figures/README-latexarrow-1.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="arrowhead-from-a-function">Arrowhead from a function<a class="anchor" aria-label="anchor" href="#arrowhead-from-a-function"></a>
@@ -293,7 +293,7 @@
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_function.html">arrow_head_function</a></span><span class="op">(</span><span class="va">dnorm</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
+<p><img src="reference/figures/README-dnorm-1.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="bezier-curves">Bezier Curves<a class="anchor" aria-label="anchor" href="#bezier-curves"></a>
@@ -302,7 +302,7 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># A list of bezier curve control points</span></span>
-<span><span class="va">star_trek</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span><span class="va">enterprise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,</span>
 <span>    <span class="fl">.5</span>,<span class="fl">.3</span>,</span>
 <span>    <span class="fl">0</span>,<span class="fl">.3</span><span class="op">)</span>,</span>
@@ -313,11 +313,11 @@
 <span>    <span class="fl">.5</span>,<span class="op">-</span><span class="fl">.3</span>,</span>
 <span>    <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="reference/arrow_head_bezier.html">arrow_head_bezier</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-9-1.png" width="100%"></p>
+<p><img src="reference/figures/README-startrek-1.png" width="100%"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  </span>
-<span><span class="fu">mypath</span><span class="op">(</span><span class="va">star_trek</span>, length_head <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-9-2.png" width="100%"></p>
+<span><span class="fu">mypath</span><span class="op">(</span><span class="va">enterprise</span>, length_head <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-startrek-2.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="nudging">Nudging<a class="anchor" aria-label="anchor" href="#nudging"></a>
@@ -372,10 +372,10 @@
 <span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>rotate <span class="op">=</span> <span class="va">pi</span>,</span>
 <span>                       nudge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="fl">0</span><span class="op">)</span>,</span>
 <span>                       plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-10-1.png" width="100%"></p>
+<p><img src="reference/figures/README-rotating-1.png" width="100%"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">xy</span>, arrow_fins <span class="op">=</span> <span class="va">xy</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-10-2.png" width="100%"></p>
+<p><img src="reference/figures/README-rotating-2.png" width="100%"></p>
 </div>
 <div class="section level1">
 <h1 id="reflecter-function">Reflecter function<a class="anchor" aria-label="anchor" href="#reflecter-function"></a>
@@ -396,11 +396,26 @@
 <span></span>
 <span></span>
 <span><span class="fu"><a href="reference/plot_arrowhead.html">plot_arrowhead</a></span><span class="op">(</span><span class="va">myarrow</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-11-1.png" width="100%"></p>
+<p><img src="reference/figures/README-reflecting-1.png" width="100%"></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">mypath</span><span class="op">(</span><span class="va">myarrow</span>, length_head <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-11-2.png" width="100%"></p>
+<p><img src="reference/figures/README-reflecting-2.png" width="100%"></p>
+<p>Here is another.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">razors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,</span>
+<span>  <span class="fl">0</span>,<span class="fl">.5</span>,</span>
+<span>  <span class="op">-</span><span class="fl">.35</span>,<span class="fl">.25</span>,</span>
+<span>  <span class="op">-</span><span class="fl">.35</span>, <span class="fl">.21</span>,</span>
+<span>  <span class="fl">0</span>,<span class="fl">.35</span>,</span>
+<span>  <span class="fl">.90</span>,<span class="fl">0</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">`colnames&lt;-`</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="reference/reflecter.html">reflecter</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu">mypath</span><span class="op">(</span><span class="va">razors</span>, length_head <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-razors-1.png" width="100%"></p>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
