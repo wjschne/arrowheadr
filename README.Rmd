@@ -80,7 +80,7 @@ base_plot +
 
 You can make your own arrowheads by supplying the `arrow_head` parameter a 2-column matrix of polygon points. I'll make a simple triangle:
 
-```{r}
+```{r triangle}
 triangle <- cbind(x = c(1, 0, 0),
                   y = c(0, .5, -.5))
 
@@ -236,23 +236,23 @@ d_edge <- tibble(
 
 # Default Arrowhead from ggarrow
 
-```{r}
+```{r defaultarrow}
 mypath()
 ```
 
 # Skinny Sharp Deltoid
-```{r}
+```{r skinnysharpdeltoid}
 mypath(arrow_head_deltoid(d = 2), length_head = 5)
 ```
 
 # Skinny Rounded Deltoid
-```{r}
+```{r skinnyrounddeltoid}
 mypath(arrow_head_deltoid(d = 2.7))
 ```
 
 # Rounded spade
 
-```{r}
+```{r spade}
 mypath(arrow_head_deltoid(d = 8))
 ```
 
@@ -260,13 +260,13 @@ mypath(arrow_head_deltoid(d = 8))
 
 Mimics the `latex'` arrowhead from tikz.arrows
 
-```{r}
+```{r latexprime}
 mypath(arrow_head = arrow_head_latex()) 
 ```
 
 Mimics the regular `latex` arrowhead from tikz.arrows
 
-```{r}
+```{r latexarrow}
 mypath(arrow_head = arrow_head_latex(undercontrols = NULL)) 
 ```
 
@@ -274,7 +274,7 @@ mypath(arrow_head = arrow_head_latex(undercontrols = NULL))
 
 You can plot any function you want...
 
-```{r}
+```{r dnorm}
 
 mypath(arrow_head_function(dnorm))
 
@@ -285,10 +285,10 @@ mypath(arrow_head_function(dnorm))
 
 A list of bezier control points can make almost any shape.
 
-```{r}
+```{r startrek}
 
 # A list of bezier curve control points
-star_trek <- list(
+enterprise <- list(
   c(1,0,
     .5,.3,
     0,.3),
@@ -300,7 +300,7 @@ star_trek <- list(
     1,0)) |> 
   arrow_head_bezier(plot = T) 
   
-mypath(star_trek, length_head = 10)
+mypath(enterprise, length_head = 10)
 ```
 
 
@@ -362,7 +362,7 @@ xy <- arrow_head_latex(rescale = c(.5, 1.5), plot = TRUE)
 
 Here I put the rotated arrowhead into the head and fin of the arrow. The rotation is in radians, not degrees.
 
-```{r}
+```{r rotating}
 
 xy <- arrow_head_latex(rotate = pi,
                        nudge = c(.4, 0),
@@ -378,7 +378,7 @@ Because most arrowheads are symmetric, we can design one half of the arrowhead a
 Here, I supply the bezier controls for just the top half of the arrow, the  `arrow_head_bezier` function creates the polygon points for the top half, and the `reflecter` function adds the mirror image points below to the polygon symmetric.
 
 
-```{r}
+```{r reflecting}
 myarrow <- list(c(1.0, .00,
                   .65, .25,
                   .40, .37,
@@ -395,3 +395,26 @@ plot_arrowhead(myarrow)
 
 mypath(myarrow, length_head = 5)
 ```
+
+Here is another.
+
+```{r razors}
+razors <- c(1,0,
+  0,.5,
+  -.35,.25,
+  -.35, .21,
+  0,.35,
+  .90,0
+  ) |> 
+  matrix(ncol = 2, byrow = T) |> 
+  `colnames<-`(c("x", "y")) |> 
+  reflecter() 
+
+mypath(razors, length_head = 6)
+
+
+
+
+
+```
+

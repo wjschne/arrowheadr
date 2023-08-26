@@ -73,7 +73,7 @@ base_plot +
   geom_arrow(arrow_head = triangle)
 ```
 
-<img src="man/figures/README-unnamed-chunk-1-1.png" width="100%" />
+<img src="man/figures/README-triangle-1.png" width="100%" />
 
 You can make any shape you want. I made arrowheadr to facilitate getting
 complex shapes into the box that ggarrow functions expect.
@@ -233,7 +233,7 @@ d_edge <- tibble(
 mypath()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-defaultarrow-1.png" width="100%" />
 
 # Skinny Sharp Deltoid
 
@@ -241,7 +241,7 @@ mypath()
 mypath(arrow_head_deltoid(d = 2), length_head = 5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-skinnysharpdeltoid-1.png" width="100%" />
 
 # Skinny Rounded Deltoid
 
@@ -249,7 +249,7 @@ mypath(arrow_head_deltoid(d = 2), length_head = 5)
 mypath(arrow_head_deltoid(d = 2.7))
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-skinnyrounddeltoid-1.png" width="100%" />
 
 # Rounded spade
 
@@ -257,7 +257,7 @@ mypath(arrow_head_deltoid(d = 2.7))
 mypath(arrow_head_deltoid(d = 8))
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-spade-1.png" width="100%" />
 
 # Sharp Barbs
 
@@ -267,7 +267,7 @@ Mimics the `latex'` arrowhead from tikz.arrows
 mypath(arrow_head = arrow_head_latex()) 
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-latexprime-1.png" width="100%" />
 
 Mimics the regular `latex` arrowhead from tikz.arrows
 
@@ -275,7 +275,7 @@ Mimics the regular `latex` arrowhead from tikz.arrows
 mypath(arrow_head = arrow_head_latex(undercontrols = NULL)) 
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-latexarrow-1.png" width="100%" />
 
 # Arrowhead from a function
 
@@ -286,7 +286,7 @@ You can plot any function you want…
 mypath(arrow_head_function(dnorm))
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-dnorm-1.png" width="100%" />
 
 # Bezier Curves
 
@@ -295,7 +295,7 @@ A list of bezier control points can make almost any shape.
 ``` r
 
 # A list of bezier curve control points
-star_trek <- list(
+enterprise <- list(
   c(1,0,
     .5,.3,
     0,.3),
@@ -308,14 +308,14 @@ star_trek <- list(
   arrow_head_bezier(plot = T) 
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+<img src="man/figures/README-startrek-1.png" width="100%" />
 
 ``` r
   
-mypath(star_trek, length_head = 10)
+mypath(enterprise, length_head = 10)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-2.png" width="100%" />
+<img src="man/figures/README-startrek-2.png" width="100%" />
 
 # Nudging
 
@@ -400,13 +400,13 @@ xy <- arrow_head_latex(rotate = pi,
                        plot = TRUE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+<img src="man/figures/README-rotating-1.png" width="100%" />
 
 ``` r
 mypath(arrow_head = xy, arrow_fins = xy)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-2.png" width="100%" />
+<img src="man/figures/README-rotating-2.png" width="100%" />
 
 # Reflecter function
 
@@ -437,11 +437,30 @@ myarrow <- list(c(1.0, .00,
 plot_arrowhead(myarrow)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+<img src="man/figures/README-reflecting-1.png" width="100%" />
 
 ``` r
 
 mypath(myarrow, length_head = 5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-2.png" width="100%" />
+<img src="man/figures/README-reflecting-2.png" width="100%" />
+
+Here is another.
+
+``` r
+razors <- c(1,0,
+  0,.5,
+  -.35,.25,
+  -.35, .21,
+  0,.35,
+  .90,0
+  ) |> 
+  matrix(ncol = 2, byrow = T) |> 
+  `colnames<-`(c("x", "y")) |> 
+  reflecter() 
+
+mypath(razors, length_head = 6)
+```
+
+<img src="man/figures/README-razors-1.png" width="100%" />
