@@ -39,5 +39,5 @@ a matrix
 Make a harpoon arrowhead
 }
 \examples{
-arrow_head_harpoon(plot = TRUE)
+xy <- arrow_head_harpoon(plot = TRUE)
 }

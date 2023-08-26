@@ -7,6 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/arrowheadr)](https://CRAN.R-project.org/package=arrowheadr)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 ## Purpose
@@ -445,22 +447,3 @@ mypath(myarrow, length_head = 5)
 ```
 
 <img src="man/figures/README-reflecting-2.png" width="100%" />
-
-Here is another.
-
-``` r
-razors <- c(1,0,
-  0,.5,
-  -.35,.25,
-  -.35, .21,
-  0,.35,
-  .90,0
-  ) |> 
-  matrix(ncol = 2, byrow = T) |> 
-  `colnames<-`(c("x", "y")) |> 
-  reflecter() 
-
-mypath(razors, length_head = 6)
-```
-
-<img src="man/figures/README-razors-1.png" width="100%" />

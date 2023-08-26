@@ -58,16 +58,16 @@ Make arrowheads with any function
 }
 \examples{
 # A normal distribution
-arrow_head_function(dnorm, plot = TRUE)
+xy <- arrow_head_function(dnorm, plot = TRUE)
 # if closed = FALSE, set thickness and base_width
-arrow_head_function(dnorm, plot = TRUE, closed = FALSE,
+xy <- arrow_head_function(dnorm, plot = TRUE, closed = FALSE,
                     thickness = 1.5,
                     base_width = .25)
 
 # A cauchy distribution
-arrow_head_function(dt, df = 1, plot = TRUE)
+xy <- arrow_head_function(dt, df = 1, plot = TRUE)
 # open with thickness = 1.5
-arrow_head_function(
+xy <- arrow_head_function(
   dt,
   df = 1,
   plot = TRUE,
@@ -75,7 +75,7 @@ arrow_head_function(
   thickness = 1.5
 )
 # thickness > 2 creates a bulge
-arrow_head_function(
+xy <- arrow_head_function(
   dt,
   df = 1,
   lower_bound = -3.25,
@@ -96,7 +96,7 @@ mytrident <- function(x, s = 160) {
   y1 + y2 + y3
 }
 
-arrow_head_function(
+xy <- arrow_head_function(
   mytrident,
   lower_bound = 0,
   upper_bound = 1,

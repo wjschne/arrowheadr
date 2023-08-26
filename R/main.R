@@ -192,12 +192,17 @@ nudger <- function(x, nudge) {
  #' @examples
  #' v2matrix(c(1,2,3,4))
  v2matrix <- function(x, ncol = 2, byrow = TRUE) {
+   if (ncol == 2)
+     vnames <- c("x", "y")
+   else
+     vnames <- paste0("x", seq(ncol))
+
    matrix(
      x,
      ncol = ncol,
      byrow = byrow
    ) |>
-     `colnames<-`(paste0("x", seq(ncol)))
+     `colnames<-`(vnames)
  }
 
 
@@ -449,7 +454,7 @@ arrow_head_ellipse <- function(a = 1,
 #' @export
 #'
 #' @examples
-#' arrow_head_harpoon(plot = TRUE)
+#' xy <- arrow_head_harpoon(plot = TRUE)
 arrow_head_harpoon <- function(point_angle = 30,
                                barb_angle = 20,
                                degrees = TRUE,
@@ -465,7 +470,7 @@ arrow_head_harpoon <- function(point_angle = 30,
     barb_angle <- barb_angle * pi / 180
     point_angle <- point_angle * pi / 180
   }
-  w2 <- 1 / (2 *  .pt)
+  w2 <- 1 / (2 *  ggplot2::.pt)
   p1 <- c(1, 0)
   p2 <- p1 + c(cos(pi - point_angle), sin(pi - point_angle))
   p3_y <- 0
@@ -944,16 +949,16 @@ arrow_head_icon <- function(x = "eiffel",
 #'
 #' @examples
 #' # A normal distribution
-#' arrow_head_function(dnorm, plot = TRUE)
+#' xy <- arrow_head_function(dnorm, plot = TRUE)
 #' # if closed = FALSE, set thickness and base_width
-#' arrow_head_function(dnorm, plot = TRUE, closed = FALSE,
+#' xy <- arrow_head_function(dnorm, plot = TRUE, closed = FALSE,
 #'                     thickness = 1.5,
 #'                     base_width = .25)
 #'
 #' # A cauchy distribution
-#' arrow_head_function(dt, df = 1, plot = TRUE)
+#' xy <- arrow_head_function(dt, df = 1, plot = TRUE)
 #' # open with thickness = 1.5
-#' arrow_head_function(
+#' xy <- arrow_head_function(
 #'   dt,
 #'   df = 1,
 #'   plot = TRUE,
@@ -961,7 +966,7 @@ arrow_head_icon <- function(x = "eiffel",
 #'   thickness = 1.5
 #' )
 #' # thickness > 2 creates a bulge
-#' arrow_head_function(
+#' xy <- arrow_head_function(
 #'   dt,
 #'   df = 1,
 #'   lower_bound = -3.25,
@@ -982,7 +987,7 @@ arrow_head_icon <- function(x = "eiffel",
 #'   y1 + y2 + y3
 #' }
 #'
-#' arrow_head_function(
+#' xy <- arrow_head_function(
 #'   mytrident,
 #'   lower_bound = 0,
 #'   upper_bound = 1,
