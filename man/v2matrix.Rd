@@ -13,6 +13,12 @@ v2matrix(x, ncol = 2, byrow = TRUE)
 
 \item{byrow}{logical. convert by row}
 }
+\value{
+a matrix
+}
 \description{
 Convert a vector to a matrix
+}
+\examples{
+v2matrix(c(1,2,3,4))
 }
