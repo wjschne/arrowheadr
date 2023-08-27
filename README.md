@@ -28,7 +28,7 @@ of arrowheadr like so:
 remotes::install_github("wjschne/arrowheadr")
 ```
 
-# The ggarrow package is fantastic
+# The ggarrow package is fantastic!
 
 Teun van den Brand’s [ggarrow](https://teunbrand.github.io/ggarrow/)
 package has great functionality for making great-looking arrows in
