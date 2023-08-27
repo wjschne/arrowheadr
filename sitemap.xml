@@ -1,81 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/LICENSE.html</loc>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/news/index.html</loc>
+    <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_bezier.html</loc>
+    <loc>/reference/arrow_head_bezier.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_catenary.html</loc>
+    <loc>/reference/arrow_head_catenary.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_default.html</loc>
+    <loc>/reference/arrow_head_default.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_ellipse.html</loc>
+    <loc>/reference/arrow_head_ellipse.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_function.html</loc>
+    <loc>/reference/arrow_head_function.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_harpoon.html</loc>
+    <loc>/reference/arrow_head_harpoon.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_hypotrochoid.html</loc>
+    <loc>/reference/arrow_head_hypotrochoid.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_icon.html</loc>
+    <loc>/reference/arrow_head_icon.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_latex.html</loc>
+    <loc>/reference/arrow_head_latex.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_trefoil.html</loc>
+    <loc>/reference/arrow_head_trefoil.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_wittgenstein_rod.html</loc>
+    <loc>/reference/arrow_head_wittgenstein_rod.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/index.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/nudger.html</loc>
+    <loc>/reference/nudger.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/plot_arrowhead.html</loc>
+    <loc>/reference/plot_arrowhead.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/reflecter.html</loc>
+    <loc>/reference/reflecter.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/rescaler.html</loc>
+    <loc>/reference/rescaler.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/rev_matrix_rows.html</loc>
+    <loc>/reference/rev_matrix_rows.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/rotater.html</loc>
+    <loc>/reference/rotater.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/transformer.html</loc>
+    <loc>/reference/transformer.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/unitizer.html</loc>
+    <loc>/reference/unitizer.html</loc>
   </url>
   <url>
-    <loc>https://wjschne.github.io/arrowheadr/reference/v2matrix.html</loc>
+    <loc>/reference/v2matrix.html</loc>
   </url>
 </urlset>

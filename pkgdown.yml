@@ -2,8 +2,5 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2023-08-27T18:40Z
-urls:
-  reference: https://wjschne.github.io/arrowheadr/reference
-  article: https://wjschne.github.io/arrowheadr/articles
+last_built: 2023-08-27T18:54Z
 
