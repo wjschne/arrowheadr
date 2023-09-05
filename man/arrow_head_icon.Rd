@@ -5,7 +5,7 @@
 \title{Make arrowhead from preset icon}
 \usage{
 arrow_head_icon(
-  x = "eiffel",
+  x = "stardestoyer",
   rotate = 0,
   rescale = c(1, 1),
   nudge = c(0, 0),
@@ -33,6 +33,8 @@ a matrix
 Make arrowhead from preset icon
 }
 \examples{
+starwars_stardestoyer <- arrow_head_icon(x = "stardestoyer", plot = TRUE)
+starwars_executor <- arrow_head_icon(x = "executor", plot = TRUE)
 eiffel <- arrow_head_icon(x = "eiffel", plot = TRUE)
 battlestar_galactica_viper <- arrow_head_icon(x = "viper", plot = TRUE)
 battlestar_galactica_viper2 <- arrow_head_icon(x = "viper2", plot = TRUE)

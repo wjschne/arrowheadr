@@ -897,12 +897,14 @@ arrow_head_latex <- function(
 #' @export
 #'
 #' @examples
+#' starwars_stardestoyer <- arrow_head_icon(x = "stardestoyer", plot = TRUE)
+#' starwars_executor <- arrow_head_icon(x = "executor", plot = TRUE)
 #' eiffel <- arrow_head_icon(x = "eiffel", plot = TRUE)
 #' battlestar_galactica_viper <- arrow_head_icon(x = "viper", plot = TRUE)
 #' battlestar_galactica_viper2 <- arrow_head_icon(x = "viper2", plot = TRUE)
 #' nighthawk <- arrow_head_icon(x = "nighthawk", plot = TRUE)
 #' panther_xf70 <- arrow_head_icon(x = "pantherxf70", plot = TRUE)
-arrow_head_icon <- function(x = "eiffel",
+arrow_head_icon <- function(x = "stardestoyer",
                             rotate = 0,
                             rescale = c(1, 1),
                             nudge = c(0, 0),
