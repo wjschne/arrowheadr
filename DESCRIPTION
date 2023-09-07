@@ -1,6 +1,6 @@
 Package: arrowheadr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Make Custom Arrowheads
 Version: 0.1.0
 Description: Create arrowheads for the ggarrow package.
 License: CC0

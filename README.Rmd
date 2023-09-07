@@ -51,7 +51,7 @@ remotes::install_github("wjschne/arrowheadr")
 
 # The ggarrow package is fantastic!
 
-Teun van den Brand's [ggarrow](https://teunbrand.github.io/ggarrow/) package has great functionality for making great-looking arrows in ggplot2. 
+Teun van den Brand's [ggarrow](https://teunbrand.github.io/ggarrow/) package gives us the ability to make great-looking arrows in ggplot2. 
 
 ```{r withggarrow}
 library(arrowheadr)
@@ -76,7 +76,8 @@ I particularly like that the arrow functions can resect the arrows such that I c
 
 ```{r resecting}
 base_plot +
-  geom_arrow(resect = 5)
+  geom_arrow(resect = 5) +
+  geom_point(size = 8)
 ```
 
 
@@ -260,7 +261,7 @@ mypath(arrow_head_deltoid(d = 8))
 
 # Sharp Barbs
 
-Mimics the `latex'` arrowhead from tikz.arrows
+Mimics the `latex'` arrowhead from [tikz.arrows](https://tikz.dev/tikz-arrows)
 
 ```{r latexprime}
 mypath(arrow_head = arrow_head_latex()) 
