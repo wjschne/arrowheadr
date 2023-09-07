@@ -44,14 +44,14 @@ candleflame <- arrow_head_wittgenstein_rod(
   rod_length = 3.75,
   nudge = c(1, 0),
   rescale = .95,
-  plot = T
+  plot = TRUE
 )
 
 
 rocket <- arrow_head_wittgenstein_rod(
   fixed_point = c(1.1, 0),
   rod_length = 2.1,
-  plot = T,
+  plot = TRUE,
   nudge = c(.1, 0),
   rescale = c(.90, .25)
 )

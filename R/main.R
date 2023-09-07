@@ -231,6 +231,8 @@ nudger <- function(x, nudge) {
 #' Plot arrowhead
 #'
 #' @param x 2-column matrix
+#' @param displayline plot the display line
+#' @param displaypoints plot the 0,0 point and the 1,0 point
 #'
 #' @return plot
 #' @export
@@ -390,7 +392,7 @@ arrow_head_bezier <- function(x,
 #'
 #' @param a width of ellipse
 #' @param b height of ellipse
-#' @param super_ellipse parameter for specifying superellipses. Can be of length 1 or 2
+#' @param superellipse parameter for specifying superellipses. Can be of length 1 or 2
 #' @inheritParams arrow_head_default
 #'
 #' @return a matrix
@@ -405,10 +407,10 @@ arrow_head_bezier <- function(x,
 #'   nudge = c(.55, 0)
 #' )
 #' # Make regular polygon with n - 1 sides
-#' pentagon <- arrow_head_ellipse(n = 6, plot = T)
+#' pentagon <- arrow_head_ellipse(n = 6, plot = TRUE)
 #' # make a superellipses
-#' star4 <- arrow_head_ellipse(superellipse = .5, plot = T)
-#' squircle <- arrow_head_ellipse(superellipse = 3, plot = T, rotate = pi / 4)
+#' star4 <- arrow_head_ellipse(superellipse = .5, plot = TRUE)
+#' squircle <- arrow_head_ellipse(superellipse = 3, plot = TRUE, rotate = pi / 4)
 #' longboat <- arrow_head_ellipse(plot = TRUE, b = 1, a = 4, superellipse = c(3,.5))
 arrow_head_ellipse <- function(a = 1,
                                b = 1,
@@ -470,7 +472,7 @@ arrow_head_harpoon <- function(point_angle = 30,
     barb_angle <- barb_angle * pi / 180
     point_angle <- point_angle * pi / 180
   }
-  w2 <- 1 / (2 *  ggplot2::.pt)
+  w2 <- 1 / (2 *  2.845276)
   p1 <- c(1, 0)
   p2 <- p1 + c(cos(pi - point_angle), sin(pi - point_angle))
   p3_y <- 0
@@ -518,17 +520,17 @@ arrow_head_harpoon <- function(point_angle = 30,
 #' @export
 #'
 #' @examples
-#' star5 <- arrow_head_hypotrochoid(plot = T, rotate = pi)
+#' star5 <- arrow_head_hypotrochoid(plot = TRUE, rotate = pi)
 #' star5_long <- arrow_head_hypotrochoid(
-#'    plot = T,
+#'    plot = TRUE,
 #'    r = 4,
 #'    R = 3,
 #'    rotate = pi,
 #'    rescale = c(1, .4)
 #'    )
-#' deltoid_long <- arrow_head_deltoid(plot = T, rescale = c(1,1))
-#' deltoid_long <- arrow_head_deltoid(plot = T)
-#' deltoid_spaced <- arrow_head_deltoid(plot = T,
+#' deltoid_long <- arrow_head_deltoid(plot = TRUE, rescale = c(1,1))
+#' deltoid_long <- arrow_head_deltoid(plot = TRUE)
+#' deltoid_spaced <- arrow_head_deltoid(plot = TRUE,
 #'                                     rescale = c(.6,.3),
 #'                                     nudge = c(.4, 0))
 arrow_head_hypotrochoid <- function(
@@ -613,14 +615,14 @@ arrow_head_deltoid <- function(
 #'   rod_length = 3.75,
 #'   nudge = c(1, 0),
 #'   rescale = .95,
-#'   plot = T
+#'   plot = TRUE
 #' )
 #'
 #'
 #' rocket <- arrow_head_wittgenstein_rod(
 #'   fixed_point = c(1.1, 0),
 #'   rod_length = 2.1,
-#'   plot = T,
+#'   plot = TRUE,
 #'   nudge = c(.1, 0),
 #'   rescale = c(.90, .25)
 #' )
@@ -671,7 +673,7 @@ arrow_head_wittgenstein_rod <- function(fixed_point = c(1.1, 0),
 #' @export
 #'
 #' @examples
-#' trefoil <- arrow_head_trefoil(plot = T)
+#' trefoil <- arrow_head_trefoil(plot = TRUE)
 arrow_head_trefoil <- function(    rotate = 0,
                                    rescale = c(1, 1),
                                    nudge = c(0, 0),
@@ -714,10 +716,10 @@ arrow_head_trefoil <- function(    rotate = 0,
 #' @export
 #'
 #' @examples
-#' catenary <- arrow_head_catenary(plot = T)
+#' catenary <- arrow_head_catenary(plot = TRUE)
 #' stlouis <-
 #'   arrow_head_catenary(
-#'     plot = T,
+#'     plot = TRUE,
 #'     a = 0.4,
 #'     base_width = 0.2,
 #'     thickness = .09
@@ -725,7 +727,7 @@ arrow_head_trefoil <- function(    rotate = 0,
 #'
 #' bluntnosed_catenary <-
 #'   arrow_head_catenary(
-#'     plot = T,
+#'     plot = TRUE,
 #'     a = .2,
 #'     thickness = 1.2
 #'   )
@@ -785,22 +787,22 @@ arrow_head_catenary <- function(a = 1,
 #' @export
 #'
 #' @examples
-#' latex_prime <- arrow_head_latex(plot = T)
+#' latex_prime <- arrow_head_latex(plot = TRUE)
 #' latex_prime_spaced <-
 #'   arrow_head_latex(nudge = c(.45, 0),
 #'                   rescale = .55,
-#'                   plot = T)
-#' latex_regular <- arrow_head_latex(undercontrols = NULL, plot = T)
+#'                   plot = TRUE)
+#' latex_regular <- arrow_head_latex(undercontrols = NULL, plot = TRUE)
 #'
 #'
-#' latex_flat <- arrow_head_latex(sidecontrols = NULL, plot = T)
+#' latex_flat <- arrow_head_latex(sidecontrols = NULL, plot = TRUE)
 #' latex_pincer <- arrow_head_latex(
 #'   sidecontrols = c(-.5,1, -.5, 2),
 #'   undercontrols = c(.2,1.5),
 #'   p_barb = c(-1,.5),
 #'   nudge = c(.35,0),
 #'   rescale = c(.65,.4),
-#'   plot = T)
+#'   plot = TRUE)
 arrow_head_latex <- function(
     point = c(1, 0),
     sidecontrols = c(7 / 12, 1 / 12,
@@ -857,8 +859,8 @@ arrow_head_latex <- function(
          nudge = nudge,
          transformations = transformations
        )
-     lines(xy_controls, col = "dodgerblue")
-      points(xy_controls, pch = 16, col = "dodgerblue")
+     graphics::lines(xy_controls, col = "dodgerblue")
+     graphics::points(xy_controls, pch = 16, col = "dodgerblue")
   }
 
   xy
@@ -973,7 +975,7 @@ arrow_head_icon <- function(x = "stardestoyer",
 #'   df = 1,
 #'   lower_bound = -3.25,
 #'   upper_bound = 3.25,
-#'   closed = F,
+#'   closed = FALSE,
 #'   thickness = 2.5,
 #'   plot = TRUE,
 #'   rescale = 1 / 3,
@@ -993,12 +995,12 @@ arrow_head_icon <- function(x = "stardestoyer",
 #'   mytrident,
 #'   lower_bound = 0,
 #'   upper_bound = 1,
-#'   plot = T,
+#'   plot = TRUE,
 #'   minimum_value = -3,
 #'   rescale = .5,
 #'   nudge = c(.5, 0)
 #' )
-arrow_head_function <- function(.fun = dnorm,
+arrow_head_function <- function(.fun = stats::dnorm,
                                    lower_bound = -4,
                                    upper_bound = 4,
                                    ...,
@@ -1054,29 +1056,5 @@ arrow_head_function <- function(.fun = dnorm,
 
 
 
-# library(tidyverse)
-
-
-# xy <- matrix(c(1,0,
-#                .7,.0,
-#                0,.3,
-#                .2,.1),
-#              ncol = 2,
-#              byrow = T) |>
-#   `colnames<-`(c("x", "y")) |>
-#   reflecter()
-#
-# plot_arrowhead(xy)
-#
-# myxy <- arrow_head_bezier(list(xy[1:3,],
-#                    xy[3:6,],
-#                    xy[6:8,]), plot = T, show_controls = T)
-# # xy <- rbind(xy, rev_matrix_rows(xy) %*% diag(c(1, -1)))
-# ggplot2::ggplot(d = tibble::tibble(x = c(0, 1), y = c(0, 1)), ggplot2::aes(x, y)) +
-#   ggarrow::geom_arrow(
-#     arrow_head = arrow_head_latex(),
-#     length_head = 5
-#   ) +
-#   ggplot2::coord_equal()
 
 

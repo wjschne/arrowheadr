@@ -5,7 +5,7 @@
 \title{Make arrowheads with any function}
 \usage{
 arrow_head_function(
-  .fun = dnorm,
+  .fun = stats::dnorm,
   lower_bound = -4,
   upper_bound = 4,
   ...,
@@ -80,7 +80,7 @@ xy <- arrow_head_function(
   df = 1,
   lower_bound = -3.25,
   upper_bound = 3.25,
-  closed = F,
+  closed = FALSE,
   thickness = 2.5,
   plot = TRUE,
   rescale = 1 / 3,
@@ -100,7 +100,7 @@ xy <- arrow_head_function(
   mytrident,
   lower_bound = 0,
   upper_bound = 1,
-  plot = T,
+  plot = TRUE,
   minimum_value = -3,
   rescale = .5,
   nudge = c(.5, 0)

@@ -45,20 +45,20 @@ a matrix
 Mimics tikz's latex arrowheads, but can make any arrowhead with 2 side curves and an underside.
 }
 \examples{
-latex_prime <- arrow_head_latex(plot = T)
+latex_prime <- arrow_head_latex(plot = TRUE)
 latex_prime_spaced <-
   arrow_head_latex(nudge = c(.45, 0),
                   rescale = .55,
-                  plot = T)
-latex_regular <- arrow_head_latex(undercontrols = NULL, plot = T)
+                  plot = TRUE)
+latex_regular <- arrow_head_latex(undercontrols = NULL, plot = TRUE)
 
 
-latex_flat <- arrow_head_latex(sidecontrols = NULL, plot = T)
+latex_flat <- arrow_head_latex(sidecontrols = NULL, plot = TRUE)
 latex_pincer <- arrow_head_latex(
   sidecontrols = c(-.5,1, -.5, 2),
   undercontrols = c(.2,1.5),
   p_barb = c(-1,.5),
   nudge = c(.35,0),
   rescale = c(.65,.4),
-  plot = T)
+  plot = TRUE)
 }

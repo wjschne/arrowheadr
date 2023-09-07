@@ -45,10 +45,10 @@ a matrix
 Make catenary arrowhead
 }
 \examples{
-catenary <- arrow_head_catenary(plot = T)
+catenary <- arrow_head_catenary(plot = TRUE)
 stlouis <-
   arrow_head_catenary(
-    plot = T,
+    plot = TRUE,
     a = 0.4,
     base_width = 0.2,
     thickness = .09
@@ -56,7 +56,7 @@ stlouis <-
 
 bluntnosed_catenary <-
   arrow_head_catenary(
-    plot = T,
+    plot = TRUE,
     a = .2,
     thickness = 1.2
   )

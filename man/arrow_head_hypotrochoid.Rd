@@ -56,17 +56,17 @@ a matrix
 Make spirograph arrowheads
 }
 \examples{
-star5 <- arrow_head_hypotrochoid(plot = T, rotate = pi)
+star5 <- arrow_head_hypotrochoid(plot = TRUE, rotate = pi)
 star5_long <- arrow_head_hypotrochoid(
-   plot = T,
+   plot = TRUE,
    r = 4,
    R = 3,
    rotate = pi,
    rescale = c(1, .4)
    )
-deltoid_long <- arrow_head_deltoid(plot = T, rescale = c(1,1))
-deltoid_long <- arrow_head_deltoid(plot = T)
-deltoid_spaced <- arrow_head_deltoid(plot = T,
+deltoid_long <- arrow_head_deltoid(plot = TRUE, rescale = c(1,1))
+deltoid_long <- arrow_head_deltoid(plot = TRUE)
+deltoid_spaced <- arrow_head_deltoid(plot = TRUE,
                                     rescale = c(.6,.3),
                                     nudge = c(.4, 0))
 }

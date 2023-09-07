@@ -5,7 +5,6 @@ Version: 0.1.0
 Description: Create arrowheads for the ggarrow package.
 License: CC0
 Encoding: UTF-8
-LazyData: true
 Imports: 
     bezier,
     purrr

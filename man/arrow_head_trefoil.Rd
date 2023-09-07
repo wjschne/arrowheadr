@@ -33,5 +33,5 @@ a matrix
 Make trefoil arrowhead
 }
 \examples{
-trefoil <- arrow_head_trefoil(plot = T)
+trefoil <- arrow_head_trefoil(plot = TRUE)
 }

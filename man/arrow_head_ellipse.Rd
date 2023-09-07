@@ -21,6 +21,8 @@ arrow_head_ellipse(
 
 \item{b}{height of ellipse}
 
+\item{superellipse}{parameter for specifying superellipses. Can be of length 1 or 2}
+
 \item{rotate}{rotation angle in radians}
 
 \item{rescale}{a single value or 2-length vector for scaling in x and y}
@@ -32,8 +34,6 @@ arrow_head_ellipse(
 \item{n}{number of points in polygon}
 
 \item{plot}{plot arrowhead if TRUE}
-
-\item{super_ellipse}{parameter for specifying superellipses. Can be of length 1 or 2}
 }
 \value{
 a matrix
@@ -50,9 +50,9 @@ ellipsehead_spaced <- arrow_head_ellipse(
   nudge = c(.55, 0)
 )
 # Make regular polygon with n - 1 sides
-pentagon <- arrow_head_ellipse(n = 6, plot = T)
+pentagon <- arrow_head_ellipse(n = 6, plot = TRUE)
 # make a superellipses
-star4 <- arrow_head_ellipse(superellipse = .5, plot = T)
-squircle <- arrow_head_ellipse(superellipse = 3, plot = T, rotate = pi / 4)
+star4 <- arrow_head_ellipse(superellipse = .5, plot = TRUE)
+squircle <- arrow_head_ellipse(superellipse = 3, plot = TRUE, rotate = pi / 4)
 longboat <- arrow_head_ellipse(plot = TRUE, b = 1, a = 4, superellipse = c(3,.5))
 }
