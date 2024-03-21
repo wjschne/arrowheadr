@@ -7,4 +7,5 @@
 ^pkgdown$
 ^\.github$
 ^data-raw$
-*.pptx
+^dev$
+^codecov\.yml$

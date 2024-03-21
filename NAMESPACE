@@ -2,6 +2,7 @@
 
 export(arrow_head_bezier)
 export(arrow_head_catenary)
+export(arrow_head_default)
 export(arrow_head_deltoid)
 export(arrow_head_ellipse)
 export(arrow_head_function)

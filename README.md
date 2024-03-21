@@ -9,6 +9,8 @@
 status](https://www.r-pkg.org/badges/version/arrowheadr)](https://CRAN.R-project.org/package=arrowheadr)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/wjschne/arrowheadr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/wjschne/arrowheadr?branch=master)
 <!-- badges: end -->
 
 ## Purpose

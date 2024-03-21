@@ -286,6 +286,7 @@ plot_arrowhead <- function(x, displayline = TRUE, displaypoints = TRUE) {
 #' @keywords internal
 #'
 #' @return a matrix
+#' @export
 arrow_head_default <- function(rotate = 0,
                                rescale = c(1, 1),
                                nudge = c(0, 0),
