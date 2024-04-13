@@ -11,6 +11,7 @@ status](https://www.r-pkg.org/badges/version/arrowheadr)](https://CRAN.R-project
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Codecov test
 coverage](https://codecov.io/gh/wjschne/arrowheadr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/wjschne/arrowheadr?branch=master)
+[![R-CMD-check](https://github.com/wjschne/arrowheadr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wjschne/arrowheadr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Purpose
