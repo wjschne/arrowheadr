@@ -22,7 +22,7 @@ library(tibble)
 library(dplyr)
 library(systemfonts)
 library(ragg)
-
+par(pty = "s")
 ```
 
 # arrowheadr <a href="https://wjschne.github.io/arrowheadr/"><img src="man/figures/logo.png" align="right" height="120" alt="arrowheadr website" /></a>
@@ -40,7 +40,7 @@ The arrowheadr package allows one to create custom arrowheads that can be used w
 
 ## Installation
 
-The development version of arrowheadr can be installed like so:
+The development version of arrowheadr can be installed by runnint this code:
 
 ``` r
 # If needed, install the remotes package first.

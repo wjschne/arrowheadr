@@ -20,7 +20,8 @@ package.
 
 ## Installation
 
-The development version of arrowheadr can be installed like so:
+The development version of arrowheadr can be installed by runnint this
+code:
 
 ``` r
 # If needed, install the remotes package first.
