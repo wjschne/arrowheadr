@@ -37,10 +37,12 @@ test_that("reflecter", {
 
 
 test_that("rotater", {
-  expect_identical(round(rotater(matrix(c(0,1), ncol = 2), theta = pi),10),
-                   matrix(c(0,-1), ncol = 2))
-  expect_error(rotater(matrix(c(0,1, 1), ncol = 3)), "x must be a 2-column matrix or a length-2 vector")
+  expect_identical(round(rotater(matrix(c(0, 1), ncol = 2),
+                                 theta = pi), 10),
+                   matrix(c(0, -1), ncol = 2))
+  expect_error(rotater(matrix(c(0, 1, 1), ncol = 3)),
+               "x must be a 2-column matrix or a length-2 vector")
 
-  expect_identical(round(rotater(c(0,1), theta = pi),10),
-                   matrix(c(0,-1), ncol = 2))
+  expect_identical(round(rotater(c(0, 1), theta = pi), 10),
+                   matrix(c(0, -1), ncol = 2))
 })
