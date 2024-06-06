@@ -6,7 +6,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/arrowheadr)](https://CRAN.R-project.org/package=arrowheadr)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Codecov test
 coverage](https://codecov.io/gh/wjschne/arrowheadr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/wjschne/arrowheadr?branch=master)
 [![R-CMD-check](https://github.com/wjschne/arrowheadr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wjschne/arrowheadr/actions/workflows/R-CMD-check.yaml)
@@ -20,8 +20,7 @@ package.
 
 ## Installation
 
-This package is not on CRAN, but you can install the development version
-of arrowheadr like so:
+The development version of arrowheadr can be installed like so:
 
 ``` r
 # If needed, install the remotes package first.

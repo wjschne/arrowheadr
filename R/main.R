@@ -14,11 +14,9 @@
 #'             byrow = TRUE)
 #' unitizer(A)
 #' cA <- unitizer(A, center = colMeans(A))
-#' op <- par(pty = "s")
 #' plot(cA, xlim = c(-1, 1), ylim = c(-1, 1))
 #' t <- seq(0,2*pi, length.out = 361)
 #' lines(cos(t), sin(t))
-#' par <- op
 unitizer <- function(x, center = rep(0, ncol(x))) {
   # Number of rows and columns
   nr <- nrow(x)
@@ -273,8 +271,10 @@ rev_matrix_cols <- function(x) {
 plot_arrowhead <- function(x,
                            displayline = TRUE,
                            displaypoints = TRUE) {
-  # Save old parameters
-  op <- par(pty = "s")
+  # Save old parameters and restore on exit
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+  par(pty = "s")
   # plot axes
   plot(
     x,
@@ -305,8 +305,6 @@ plot_arrowhead <- function(x,
     # center and arrow tip
     graphics::points(c(0, 1), c(0, 0), pch = 16, col = "red")
   }
-  # Restore old parameters
-  par <- op
 }
 
 

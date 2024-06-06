@@ -25,9 +25,7 @@ A = matrix(c(1, 2,
             byrow = TRUE)
 unitizer(A)
 cA <- unitizer(A, center = colMeans(A))
-op <- par(pty = "s")
 plot(cA, xlim = c(-1, 1), ylim = c(-1, 1))
 t <- seq(0,2*pi, length.out = 361)
 lines(cos(t), sin(t))
-par <- op
 }
