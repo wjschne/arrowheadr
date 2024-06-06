@@ -271,10 +271,6 @@ rev_matrix_cols <- function(x) {
 plot_arrowhead <- function(x,
                            displayline = TRUE,
                            displaypoints = TRUE) {
-  # Save old parameters and restore on exit
-  oldpar <- par(no.readonly = TRUE)
-  on.exit(par(oldpar))
-  par(pty = "s")
   # plot axes
   plot(
     x,
