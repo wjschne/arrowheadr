@@ -9,6 +9,7 @@ arrow_head_default(
   rescale = c(1, 1),
   nudge = c(0, 0),
   transformations = c("unitizer", "rotater", "rescaler", "nudger"),
+  n = 100,
   plot = FALSE
 )
 }
@@ -21,9 +22,9 @@ arrow_head_default(
 
 \item{transformations}{a vector of transformation functions}
 
-\item{plot}{plot arrowhead if TRUE}
-
 \item{n}{number of points in polygon}
+
+\item{plot}{plot arrowhead if TRUE}
 }
 \value{
 a matrix

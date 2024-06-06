@@ -1,7 +1,7 @@
 Type: Package
 Package: arrowheadr
 Title: Make Custom Arrowheads
-Version: 0.1.0.9000
+Version: 1.0.0
 Authors@R: 
     person("W. Joel", "Schneider", , "w.joel.schneider@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8393-5316"))
@@ -21,9 +21,7 @@ Imports:
 Suggests: 
     ggarrow,
     testthat (>= 3.0.0)
-Remotes: 
-    https://github.com/teunbrand/ggarrow
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Config/testthat/edition: 3

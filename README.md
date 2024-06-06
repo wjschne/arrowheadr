@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # arrowheadr <a href="https://wjschne.github.io/arrowheadr/"><img src="man/figures/logo.png" align="right" height="120" alt="arrowheadr website" /></a>
 
 <!-- badges: start -->

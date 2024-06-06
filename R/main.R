@@ -7,12 +7,12 @@
 #' @export
 #'
 #' @examples
-#' unitizer(
-#'   A <- matrix(c(1, 2,
-#'                 -8,6,
-#'                 9,5),
-#'               ncol = 2,
-#'               byrow = TRUE))
+#' A = matrix(c(1, 2,
+#'             -8,6,
+#'              9,5),
+#'             ncol = 2,
+#'             byrow = TRUE)
+#' unitizer(A)
 #' cA <- unitizer(A, center = colMeans(A))
 #' op <- par(pty = "s")
 #' plot(cA, xlim = c(-1, 1), ylim = c(-1, 1))
@@ -24,7 +24,7 @@ unitizer <- function(x, center = rep(0, ncol(x))) {
   nr <- nrow(x)
   nc <- ncol(x)
   # Centered matrix
-  centered <- x - matrix(rep(center,nr), ncol = nc, byrow = TRUE)
+  centered <- x - matrix(rep(center, nr), ncol = nc, byrow = TRUE)
 
   # The maximum distance from the center
   maxdist <- max(apply(centered, 1, \(a) sqrt(sum(a ^ 2))))
@@ -47,8 +47,12 @@ unitizer <- function(x, center = rep(0, ncol(x))) {
 #' @examples
 #' nudger(matrix(0, nrow = 2, ncol = 2), nudge = c(0,1))
 nudger <- function(x, nudge) {
-  if (length(nudge) == 1) nudge <- rep(nudge, ncol(x))
-  if(length(nudge) != ncol(x)) stop("The nudge parameter must be a single value or a vector the same length as the number of columns in x.")
+  if (length(nudge) == 1)
+    nudge <- rep(nudge, ncol(x))
+  if (length(nudge) != ncol(x))
+    stop(
+      "The nudge parameter must be a single value or a vector the same length as the number of columns in x."
+    )
   result <- x + matrix(rep(nudge, nrow(x)), ncol = ncol(x), byrow = TRUE)
   colnames(result) <- colnames(x)
   result
@@ -65,165 +69,195 @@ nudger <- function(x, nudge) {
 #'
 #' @examples
 #' rescaler(matrix(1, nrow = 2, ncol = 2), magnitude = c(2,3))
- rescaler <- function(x, magnitude) {
-  if (length(magnitude) == 1) magnitude <- rep(magnitude, ncol(x))
-  if(length(magnitude) != ncol(x)) stop("The magnitude parameter must be a single value or a vector the same length as the number of columns in x.")
+rescaler <- function(x, magnitude) {
+  if (length(magnitude) == 1)
+    magnitude <- rep(magnitude, ncol(x))
+  if (length(magnitude) != ncol(x))
+    stop(
+      "The magnitude parameter must be a single value or a vector the same length as the number of columns in x."
+    )
   result <- x %*% diag(magnitude)
   colnames(result) <- colnames(x)
   result
 
- }
+}
 
- #' make a reflection of a matrix on the y axis
- #'
- #' Good for making symmetrical arrowheads
- #'
- #' @param x matrix
- #' @param add_reflection add to x in reverse order
- #'
- #' @return a matrix with y reversed sign and rows in reverse order
- #' @export
- #'
- #' @examples
- #' reflecter(diag(c(1,2)))
- reflecter <- function(x, add_reflection = TRUE) {
-   reflection <- rev_matrix_rows(x) %*% diag(c(1, -1))
-     if (add_reflection) {
-       reflection <- rbind(x,reflection)
-     }
-   colnames(reflection) <- colnames(x)
-   reflection
- }
+#' make a reflection of a matrix on the y axis
+#'
+#' Good for making symmetrical arrowheads
+#'
+#' @param x matrix
+#' @param add_reflection add to x in reverse order
+#'
+#' @return a matrix with y reversed sign and rows in reverse order
+#' @export
+#'
+#' @examples
+#' reflecter(diag(c(1,2)))
+reflecter <- function(x, add_reflection = TRUE) {
+  reflection <- rev_matrix_rows(x) %*% diag(c(1, -1))
+  if (add_reflection) {
+    reflection <- rbind(x, reflection)
+  }
+  colnames(reflection) <- colnames(x)
+  reflection
+}
 
- #' Rotate a 2-column matrix
- #'
- #' @param x a 2-column matrix
- #' @param theta angle
- #' @param degrees if TRUE, theta is in degrees instead of radians
- #' @param center point of rotation
- #'
- #'
- #' @return a rotated 2-column matrix
- #' @export
- #'
- #' @examples
- #' x <- matrix(seq(10), ncol = 2)
- #' rotater(x, pi)
- rotater <- function(x, theta, center = c(0,0), degrees = FALSE) {
+#' Rotate a 2-column matrix
+#'
+#' @param x a 2-column matrix
+#' @param theta angle
+#' @param degrees if TRUE, theta is in degrees instead of radians
+#' @param center point of rotation
+#'
+#'
+#' @return a rotated 2-column matrix
+#' @export
+#'
+#' @examples
+#' x <- matrix(seq(10), ncol = 2)
+#' rotater(x, pi)
+rotater <- function(x,
+                    theta,
+                    center = c(0, 0),
+                    degrees = FALSE) {
+  if ("matrix" %in% class(x)) {
+    if (ncol(x) != 2)
+      stop("x must be a 2-column matrix or a length-2 vector")
+  } else {
+    if (length(x) == 2)
+      x <- matrix(x, ncol = 2, nrow = 1)
+    else
+      stop("x must be a 2-column matrix or a length-2 vector")
+  }
 
-   if ("matrix" %in% class(x)) {
-     if (ncol(x) != 2) stop("x must be a 2-column matrix or a length-2 vector")
-   } else {
-     if (length(x) == 2) x = matrix(x, ncol = 2, nrow = 1) else stop("x must be a 2-column matrix or a length-2 vector")
-   }
+  if ("matrix" %in% class(center)) {
+    if (ncol(center) != 2)
+      stop("center must be a 2-column matrix or a length-2 vector")
+    if (nrow(center == 1))
+      center <- matrix(center,
+                       nrow = nrow(x),
+                       ncol = 2,
+                       byrow = TRUE)
+    if (nrow(center) != nrow(x))
+      stop("center must have 1 row or the same number of rows as x")
+  } else {
+    if (length(center) == 2)
+      center <- matrix(center,
+                       nrow = nrow(x),
+                       ncol = 2,
+                       byrow = TRUE)
+    else
+      stop("center must be a 2-column matrix or a length-2 vector")
+  }
 
-   if ("matrix" %in% class(center)) {
-     if (ncol(center) != 2) stop(
-       "center must be a 2-column matrix or a length-2 vector")
-     if (nrow(center == 1)) center <- matrix(center, nrow = nrow(x), ncol = 2, byrow = TRUE)
-     if (nrow(center) != nrow(x)) stop(
-       "center must have 1 row or the same number of rows as x")
-   } else {
-     if (length(center) == 2) center <- matrix(center, nrow = nrow(x), ncol = 2, byrow = TRUE) else stop(
-       "center must be a 2-column matrix or a length-2 vector")
-   }
+  if (degrees)
+    theta <- theta * pi / 180
 
-   if (degrees) theta <- theta * pi / 180
+  # https://www.wikiwand.com/en/Rotation_matrix
+  rotation_matrix <- matrix(c(cos(theta),
+                              -sin(theta),
+                              sin(theta),
+                              cos(theta)),
+                            nrow = 2,
+                            ncol = 2)
 
-   # https://www.wikiwand.com/en/Rotation_matrix
-   rotation_matrix <- matrix(c(cos(theta), -sin(theta),
-                               sin(theta), cos(theta)),
-                             nrow = 2, ncol = 2)
+  result <- ((x - center) %*% rotation_matrix) + center
+  colnames(result) <- colnames(x)
+  result
+}
 
-   result <- ((x - center) %*% rotation_matrix) + center
-   colnames(result) <- colnames(x)
-   result
- }
+#' Do transformations in a desired order
+#'
+#' @param x a 2-column matrix
+#' @param rescale a single value or a vector with length equal to the number of columns in x
+#' @param rotate angle in radians unless degrees is true
+#' @param nudge a single value or a vector with length equal to the number of columns in x
+#' @param center a single value or a vector with length equal to the number of columns in x
+#' @param degrees if TRUE, angles are degrees instead of radians
+#' @param transformations a vector of transformation functions
+#'
+#' @return a matrix
+#' @export
+#'
+#' @examples
+#'
+#' matrix(c(0,0,1,1), nrow = 2) |>
+#'   transformer(transformations = "rotater", rotate = pi)
+transformer <- function(x,
+                        rescale = c(1, 1),
+                        rotate = 0,
+                        nudge = 0,
+                        center = c(0, 0),
+                        degrees = FALSE,
+                        transformations = c("unitizer",
+                                            "rescaler",
+                                            "nudger",
+                                            "rotater")) {
+  cnames <- colnames(x)
 
- #' Do transformations in a desired order
- #'
- #' @param x a 2-column matrix
- #' @param rescale a single value or a vector with length equal to the number of columns in x
- #' @param rotate angle in radians unless degrees is true
- #' @param nudge a single value or a vector with length equal to the number of columns in x
- #' @param center a single value or a vector with length equal to the number of columns in x
- #' @param degrees if TRUE, angles are degrees instead of radians
- #' @param transformations a vector of transformation functions
- #'
- #' @return a matrix
- #' @export
- #'
- #' @examples
- #'
- #' matrix(c(0,0,1,1), nrow = 2) |>
- #'   transformer(transformations = "rotater", rotate = pi)
- transformer <- function(x,
-                         rescale = c(1,1),
-                         rotate = 0,
-                         nudge = 0,
-                         center = c(0,0),
-                         degrees = FALSE,
-                         transformations = c("unitizer", "rescaler", "nudger", "rotater")) {
-   cnames <- colnames(x)
+  for (f in transformations) {
+    args <- list(x = x)
+    if (f == "unitizer")
+      args <- append(args, list(center = center))
+    if (f == "rescaler")
+      args <- append(args, list(magnitude = rescale))
+    if (f == "nudger")
+      args <- append(args, list(nudge = nudge))
+    if (f == "rotater")
+      args <- append(args, list(
+        theta = rotate,
+        center = center,
+        degrees = degrees
+      ))
 
-   for (f in transformations) {
-     args <- list(x = x)
-     if(f == "unitizer") args = append(args, list(center = center))
-     if(f == "rescaler") args = append(args, list(magnitude = rescale))
-     if(f == "nudger") args = append(args, list(nudge = nudge))
-     if(f == "rotater") args = append(args, list(theta = rotate, center = center, degrees = degrees))
+    x <- do.call(what = f, args = args)
+  }
+  colnames(x) <- cnames
+  x
 
-     x <- do.call(what = f, args = args)
-   }
-   colnames(x) <- cnames
-   x
+}
 
- }
+#' Convert a vector to a matrix
+#'
+#' @param x vector
+#' @param ncol number of columns
+#' @param byrow logical. convert by row
+#'
+#' @return a matrix
+#' @export
+#'
+#' @examples
+#' v2matrix(c(1,2,3,4))
+v2matrix <- function(x, ncol = 2, byrow = TRUE) {
+  if (ncol == 2)
+    vnames <- c("x", "y")
+  else
+    vnames <- paste0("x", seq(ncol))
 
- #' Convert a vector to a matrix
- #'
- #' @param x vector
- #' @param ncol number of columns
- #' @param byrow logical. convert by row
- #'
- #' @return a matrix
- #' @export
- #'
- #' @examples
- #' v2matrix(c(1,2,3,4))
- v2matrix <- function(x, ncol = 2, byrow = TRUE) {
-   if (ncol == 2)
-     vnames <- c("x", "y")
-   else
-     vnames <- paste0("x", seq(ncol))
-
-   matrix(
-     x,
-     ncol = ncol,
-     byrow = byrow
-   ) |>
-     `colnames<-`(vnames)
- }
+  matrix(x, ncol = ncol, byrow = byrow) |>
+    `colnames<-`(vnames)
+}
 
 
- #' reverses the order of rows or columns in a matrix
- #'
- #' @param x matrix
- #'
- #' @return a matrix
- #' @export
- #'
- #' @examples
- #' rev_matrix_rows(diag(c(1,2)))
- rev_matrix_rows <- function(x) {
-   x[seq(nrow(x), 1),]
- }
+#' reverses the order of rows or columns in a matrix
+#'
+#' @param x matrix
+#'
+#' @return a matrix
+#' @export
+#'
+#' @examples
+#' rev_matrix_rows(diag(c(1,2)))
+rev_matrix_rows <- function(x) {
+  x[seq(nrow(x), 1), ]
+}
 
- #' @export
- #' @rdname rev_matrix_rows
- rev_matrix_cols <- function(x) {
-   x[, seq(ncol(x), 1)]
- }
+#' @export
+#' @rdname rev_matrix_rows
+rev_matrix_cols <- function(x) {
+  x[, seq(ncol(x), 1)]
+}
 
 
 
@@ -236,7 +270,9 @@ nudger <- function(x, nudge) {
 #'
 #' @return plot
 #' @export
-plot_arrowhead <- function(x, displayline = TRUE, displaypoints = TRUE) {
+plot_arrowhead <- function(x,
+                           displayline = TRUE,
+                           displaypoints = TRUE) {
   # Save old parameters
   op <- par(pty = "s")
   # plot axes
@@ -294,6 +330,7 @@ arrow_head_default <- function(rotate = 0,
                                                    "rotater",
                                                    "rescaler",
                                                    "nudger"),
+                               n = 100,
                                plot = FALSE) {
 
 }
@@ -338,16 +375,15 @@ arrow_head_bezier <- function(x,
                               transformations = c("rotater",
                                                   "rescaler",
                                                   "nudger"),
-                          n = 101,
-                          plot = FALSE,
-                          show_controls = TRUE) {
-
-  t = seq(0, 1, length.out = n)
+                              n = 101,
+                              plot = FALSE,
+                              show_controls = TRUE) {
+  t <- seq(0, 1, length.out = n)
 
   controls <- purrr::map(x, \(p) {
     if (!is.matrix(p)) {
       p <- v2matrix(p)
-      }
+    }
     p
   })
 
@@ -378,9 +414,16 @@ arrow_head_bezier <- function(x,
           nudge = nudge,
           transformations = transformations
         )
-      graphics::points(xy_controls, pch = 16, col = "dodgerblue", xlim = c(-1,1))
-      graphics::lines(xy_controls, col = "dodgerblue", xlim = c(-1,1))
-      }
+      graphics::points(
+        xy_controls,
+        pch = 16,
+        col = "dodgerblue",
+        xlim = c(-1, 1)
+      )
+      graphics::lines(xy_controls,
+                      col = "dodgerblue",
+                      xlim = c(-1, 1))
+    }
 
   }
 
@@ -419,32 +462,29 @@ arrow_head_ellipse <- function(a = 1,
                                rotate = 0,
                                rescale = c(1, 1),
                                nudge = c(0, 0),
-                               transformations = c("unitizer",
-                                                   "rotater",
-                                                   "rescaler",
-                                                   "nudger"),
+                               transformations = c("unitizer", "rotater", "rescaler", "nudger"),
                                n = 361,
                                plot = FALSE) {
-    t <- seq(0, 2 * pi, length.out = n)
-    if (length(superellipse == 1)) {
-      superellipse <- rep(superellipse,2)
-    } else if (!(length(superellipse) %in% c(1,2))) {
-      stop("superellipse must be of length 1 or 2")
-    }
-    xy <- cbind(x = a * sign(cos(t)) * (abs(cos(t)) ^ (2 / superellipse[1])),
-                y = b * sign(sin(t)) * (abs(sin(t)) ^ (2 / superellipse[2]))) |>
-      transformer(
-        rescale = rescale,
-        rotate = rotate,
-        nudge = nudge,
-        transformations = transformations
-      ) |>
-      `colnames<-`(c("x", "y"))
-    if (plot) {
-      plot_arrowhead(xy)
-    }
-    xy
+  t <- seq(0, 2 * pi, length.out = n)
+  if (length(superellipse == 1)) {
+    superellipse <- rep(superellipse, 2)
+  } else if (!(length(superellipse) %in% c(1, 2))) {
+    stop("superellipse must be of length 1 or 2")
   }
+  xy <- cbind(x = a * sign(cos(t)) * (abs(cos(t)) ^ (2 / superellipse[1])),
+              y = b * sign(sin(t)) * (abs(sin(t)) ^ (2 / superellipse[2]))) |>
+    transformer(
+      rescale = rescale,
+      rotate = rotate,
+      nudge = nudge,
+      transformations = transformations
+    ) |>
+    `colnames<-`(c("x", "y"))
+  if (plot) {
+    plot_arrowhead(xy)
+  }
+  xy
+}
 
 #' Make a harpoon arrowhead
 #'
@@ -473,7 +513,6 @@ arrow_head_harpoon <- function(point_angle = 30,
     barb_angle <- barb_angle * pi / 180
     point_angle <- point_angle * pi / 180
   }
-  w2 <- 1 / (2 *  2.845276)
   p1 <- c(1, 0)
   p2 <- p1 + c(cos(pi - point_angle), sin(pi - point_angle))
   p3_y <- 0
@@ -483,12 +522,10 @@ arrow_head_harpoon <- function(point_angle = 30,
   p3_x <- (p3_y - l23_intercept) / m1
   p3 <- c(p3_x, p3_y)
 
-  rescale1 <- 1 - p3[1]
   xy <- c(p1, p2, p3) |>
     v2matrix() |>
     nudger(c(-p3[1], 0)) |>
     rescaler(1 / (1 - p3[1])) |>
-    # nudger(c(0, -.025)) |>
     `colnames<-`(c("x", "y")) |>
     transformer(
       rescale = rescale,
@@ -534,25 +571,19 @@ arrow_head_harpoon <- function(point_angle = 30,
 #' deltoid_spaced <- arrow_head_deltoid(plot = TRUE,
 #'                                     rescale = c(.6,.3),
 #'                                     nudge = c(.4, 0))
-arrow_head_hypotrochoid <- function(
-    r = 4,
-    R = 3,
-    d = r,
-    windings = r,
-    rotate = 0,
-    rescale = c(1, 1),
-    nudge = c(0, 0),
-    transformations = c("unitizer",
-                        "rotater",
-                        "rescaler",
-                        "nudger"),
-    n = 361,
-    plot = FALSE) {
-
-
-
-
-
+arrow_head_hypotrochoid <- function(r = 4,
+                                    R = 3,
+                                    d = r,
+                                    windings = r,
+                                    rotate = 0,
+                                    rescale = c(1, 1),
+                                    nudge = c(0, 0),
+                                    transformations = c("unitizer",
+                                                        "rotater",
+                                                        "rescaler",
+                                                        "nudger"),
+                                    n = 361,
+                                    plot = FALSE) {
   theta <- seq(0, windings * 2 * pi, length.out = abs(n * windings))
   x <- (R - r) * cos(theta) + d * cos(theta * (R - r) / r)
   y <- (R - r) * sin(theta) + d * sin(theta * (R - r) / r)
@@ -575,27 +606,27 @@ arrow_head_hypotrochoid <- function(
 
 #' @export
 #' @rdname arrow_head_hypotrochoid
-arrow_head_deltoid <- function(
-    d = 2.6,
-    rotate = pi,
-    rescale = c(1, .5),
-    nudge = c(0, 0),
-    transformations = c("unitizer",
-                        "rotater",
-                        "rescaler",
-                        "nudger"),
-    n = 361,
-    plot = FALSE) {
-  arrow_head_hypotrochoid(r = 2,
-                         R = 1,
-                         d = d,
-                         rescale = rescale,
-                         rotate = rotate,
-                         nudge = nudge,
-                         transformations = transformations,
-                         n = n,
-                         plot = plot
-                         )
+arrow_head_deltoid <- function(d = 2.6,
+                               rotate = pi,
+                               rescale = c(1, .5),
+                               nudge = c(0, 0),
+                               transformations = c("unitizer",
+                                                   "rotater",
+                                                   "rescaler",
+                                                   "nudger"),
+                               n = 361,
+                               plot = FALSE) {
+  arrow_head_hypotrochoid(
+    r = 2,
+    R = 1,
+    d = d,
+    rescale = rescale,
+    rotate = rotate,
+    nudge = nudge,
+    transformations = transformations,
+    n = n,
+    plot = plot
+  )
 }
 
 
@@ -627,18 +658,16 @@ arrow_head_deltoid <- function(
 #'   nudge = c(.1, 0),
 #'   rescale = c(.90, .25)
 #' )
-arrow_head_wittgenstein_rod <- function(fixed_point = c(1.1, 0),
-                             rod_length = 2.1,
-                             rotate = 0,
-                             rescale = c(1,1),
-                             nudge = c(0,0),
-                             transformations = c("unitizer",
-                                                 "rotater",
-                                                 "rescaler",
-                                                 "nudger"),
-                             n = 361,
-                             plot = FALSE) {
-  t <- seq(0,2*pi, length.out = n)
+arrow_head_wittgenstein_rod <- function(
+    fixed_point = c(1.1, 0),
+    rod_length = 2.1,
+    rotate = 0,
+    rescale = c(1, 1),
+    nudge = c(0, 0),
+    transformations = c("unitizer", "rotater", "rescaler", "nudger"),
+    n = 361,
+    plot = FALSE) {
+  t <- seq(0, 2 * pi, length.out = n)
   cx <- cos(t)
   cy <- sin(t)
   fpx <- fixed_point[1]
@@ -661,11 +690,6 @@ arrow_head_wittgenstein_rod <- function(fixed_point = c(1.1, 0),
   xy
 }
 
-
-# a * log(a + sqrt(a ^ 2 + x ^ 2))
-
-
-
 #' Make trefoil arrowhead
 #'
 #' @inheritParams arrow_head_default
@@ -675,16 +699,16 @@ arrow_head_wittgenstein_rod <- function(fixed_point = c(1.1, 0),
 #'
 #' @examples
 #' trefoil <- arrow_head_trefoil(plot = TRUE)
-arrow_head_trefoil <- function(    rotate = 0,
-                                   rescale = c(1, 1),
-                                   nudge = c(0, 0),
-                                   transformations = c("unitizer",
-                                                       "rotater",
-                                                       "rescaler",
-                                                       "nudger"),
-                              n = 361,
-                              plot = FALSE) {
-  t <- seq(0,2*pi, length.out = n)
+arrow_head_trefoil <- function(rotate = 0,
+                               rescale = c(1, 1),
+                               nudge = c(0, 0),
+                               transformations = c("unitizer",
+                                                   "rotater",
+                                                   "rescaler",
+                                                   "nudger"),
+                               n = 361,
+                               plot = FALSE) {
+  t <- seq(0, 2 * pi, length.out = n)
   x <- sin(t) + 2 * sin(2 * t)
   y <- cos(t) - 2 * cos(2 * t)
   xy <- cbind(x = x, y = y) |>
@@ -733,17 +757,15 @@ arrow_head_trefoil <- function(    rotate = 0,
 #'     thickness = 1.2
 #'   )
 arrow_head_catenary <- function(a = 1,
-                               base_width = 0,
-                               thickness = 1.2,
-                               closed = FALSE,
-                               rotate = 0,
-                               rescale = c(1, 1),
-                               nudge = c(0, 0),
-                               transformations = c("rotater",
-                                                   "rescaler",
-                                                   "nudger"),
-                               n = 361,
-                               plot = FALSE) {
+                                base_width = 0,
+                                thickness = 1.2,
+                                closed = FALSE,
+                                rotate = 0,
+                                rescale = c(1, 1),
+                                nudge = c(0, 0),
+                                transformations = c("rotater", "rescaler", "nudger"),
+                                n = 361,
+                                plot = FALSE) {
   x <- seq(-1, 1, length.out = n)
   y <- a * cosh(x / a)
   y <- 1 - (y - min(y)) / (max(y) - min(y))
@@ -804,42 +826,32 @@ arrow_head_catenary <- function(a = 1,
 #'   nudge = c(.35,0),
 #'   rescale = c(.65,.4),
 #'   plot = TRUE)
-arrow_head_latex <- function(
-    point = c(1, 0),
-    sidecontrols = c(7 / 12, 1 / 12,
-                     -1 / 6, 1 / 4),
-    p_barb = c(-2 / 3, 5 / 8),
-    undercontrols = c(-1 / 4, 1 / 6),
-    rotate = 0,
-    rescale = c(1, 1),
-    nudge = c(0, 0),
-    transformations = c("rotater",
-                        "rescaler",
-                        "nudger"),
-    n = 101,
-    plot = FALSE) {
-
-  leftside = c(
-    point,
-    sidecontrols,
-    p_barb) |>
+arrow_head_latex <- function(point = c(1, 0),
+                             sidecontrols = c(7 / 12, 1 / 12, -1 / 6, 1 / 4),
+                             p_barb = c(-2 / 3, 5 / 8),
+                             undercontrols = c(-1 / 4, 1 / 6),
+                             rotate = 0,
+                             rescale = c(1, 1),
+                             nudge = c(0, 0),
+                             transformations = c("rotater", "rescaler", "nudger"),
+                             n = 101,
+                             plot = FALSE) {
+  leftside <- c(point, sidecontrols, p_barb) |>
     v2matrix()
 
-  under_side <- c(p_barb,
-                  undercontrols) |>
+  under_side <- c(p_barb, undercontrols) |>
     v2matrix() |>
     reflecter()
 
 
-  rightside = reflecter(leftside, add_reflection = FALSE)
+  rightside <- reflecter(leftside, add_reflection = FALSE)
 
 
 
 
-  controls <-list(
-    leftside = leftside,
-    under_side = under_side,
-    rightside = rightside)
+  controls <- list(leftside = leftside,
+                   under_side = under_side,
+                   rightside = rightside)
 
   xy <- arrow_head_bezier(controls) |>
     transformer(
@@ -851,45 +863,21 @@ arrow_head_latex <- function(
 
   if (plot) {
     plot_arrowhead(xy)
-     xy_controls <- controls |>
-       do.call(what = rbind) |>
-       `colnames<-`(c("x", "y")) |>
-       transformer(
-         rescale = rescale,
-         rotate = rotate,
-         nudge = nudge,
-         transformations = transformations
-       )
-     graphics::lines(xy_controls, col = "dodgerblue")
-     graphics::points(xy_controls, pch = 16, col = "dodgerblue")
+    xy_controls <- controls |>
+      do.call(what = rbind) |>
+      `colnames<-`(c("x", "y")) |>
+      transformer(
+        rescale = rescale,
+        rotate = rotate,
+        nudge = nudge,
+        transformations = transformations
+      )
+    graphics::lines(xy_controls, col = "dodgerblue")
+    graphics::points(xy_controls, pch = 16, col = "dodgerblue")
   }
 
   xy
 }
-
-
-# x <- svgparser::read_svg('inst/eiffel.svg', obj_type = "data.frame")[,c("x", "y")] |>
-#   dplyr::mutate(y = max(y) - y,
-#                 x = x - min(x)) |>
-#   as.matrix()
-
-
-
-
-# X-wing by Joel Wisneski from <a href="https://thenounproject.com/browse/icons/term/x-wing/" target="_blank" title="X-wing Icons">Noun Project</a> (CC BY 3.0)
-# svgparser::read_svg('inst/x-wing.svg', obj_type = "data.frame")[,c("x", "y")] |>
-#   dplyr::mutate(y = y - mean(y),
-#                 x = x - mean(x)) |>
-#   as.matrix() |>
-#   # reflecter() |>
-#   unitizer() |>
-#   rotater(pi/2) |>
-#   nudger(c(.65,-.01)) |>
-#   rescaler(.61) |>
-#   plot_arrowhead()
-
-
-
 
 #' Make arrowhead from preset icon
 #'
@@ -911,12 +899,9 @@ arrow_head_icon <- function(x = "stardestoyer",
                             rotate = 0,
                             rescale = c(1, 1),
                             nudge = c(0, 0),
-                            transformations = c("rotater",
-                                                "rescaler",
-                                                "nudger"),
+                            transformations = c("rotater", "rescaler", "nudger"),
                             plot = FALSE) {
-
-  xy <- icons[icons$icon == x,c("x", "y")] |>
+  xy <- icons[icons$icon == x, c("x", "y")] |>
     as.matrix() |>
     transformer(
       rescale = rescale,
@@ -1002,26 +987,24 @@ arrow_head_icon <- function(x = "stardestoyer",
 #'   nudge = c(.5, 0)
 #' )
 arrow_head_function <- function(.fun = stats::dnorm,
-                                   lower_bound = -4,
-                                   upper_bound = 4,
-                                   ...,
-                               base_width = 0,
-                               thickness = 1.2,
-                               closed = TRUE,
-                               minimum_value = NA,
-                               rotate = 0,
-                               rescale = c(1, 1),
-                               nudge = c(0, 0),
-                               transformations = c("rotater",
-                                                   "rescaler",
-                                                   "nudger"),
-                               n = 1001,
-                               plot = FALSE) {
+                                lower_bound = -4,
+                                upper_bound = 4,
+                                ...,
+                                base_width = 0,
+                                thickness = 1.2,
+                                closed = TRUE,
+                                minimum_value = NA,
+                                rotate = 0,
+                                rescale = c(1, 1),
+                                nudge = c(0, 0),
+                                transformations = c("rotater", "rescaler", "nudger"),
+                                n = 1001,
+                                plot = FALSE) {
   x <- seq(lower_bound, upper_bound, length.out = n)
-  y = .fun(x, ...)
+  y <- .fun(x, ...)
   if (!is.na(minimum_value)) {
     x <- c(lower_bound, x, upper_bound)
-    y <- c(minimum_value,y, minimum_value)
+    y <- c(minimum_value, y, minimum_value)
   }
 
   x <- 2 * (x - min(x)) / (max(x) - min(x)) - 1
@@ -1054,8 +1037,3 @@ arrow_head_function <- function(.fun = stats::dnorm,
   xy
 
 }
-
-
-
-
-

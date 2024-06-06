@@ -18,12 +18,12 @@ matrix
 Fit matrix to unit circle
 }
 \examples{
-unitizer(
-  A <- matrix(c(1, 2,
-                -8,6,
-                9,5),
-              ncol = 2,
-              byrow = TRUE))
+A = matrix(c(1, 2,
+            -8,6,
+             9,5),
+            ncol = 2,
+            byrow = TRUE)
+unitizer(A)
 cA <- unitizer(A, center = colMeans(A))
 op <- par(pty = "s")
 plot(cA, xlim = c(-1, 1), ylim = c(-1, 1))
