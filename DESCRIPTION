@@ -6,10 +6,11 @@ Authors@R:
     person("W. Joel", "Schneider", , "w.joel.schneider@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8393-5316"))
 Description: The 'ggarrow' package is a 'ggplot2' extension that plots
-    highly customizable arrows segments. The 'arrowheadr' package makes it
-    easy to create custom arrowheads and fins within the parameters that
-    'ggarrow' functions expect. It has preset arrowheads and a collection
-    of functions to create and transform data for customizing arrows.
+    a variety of different arrow segments with many options to customize. 
+    The 'arrowheadr' package makes it easy to create custom arrowheads 
+    and fins within the parameters that 'ggarrow' functions expect. It 
+    has preset arrowheads and a collection of functions to create and 
+    transform data for customizing arrows.
 License: CC0
 URL: https://github.com/wjschne/arrowheadr,
     https://wjschne.github.io/arrowheadr/
