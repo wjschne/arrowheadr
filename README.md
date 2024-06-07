@@ -20,7 +20,7 @@ package.
 
 ## Installation
 
-The development version of arrowheadr can be installed by runnint this
+The development version of arrowheadr can be installed by running this
 code:
 
 ``` r
@@ -43,8 +43,8 @@ library(tibble)
 library(dplyr)
 
 # Make simple plot for reuse
-base_plot <- data.frame(x = c(0,1), y = c(0,1)) |> 
-  ggplot(aes(x,y)) + 
+base_plot <- data.frame(x = c(0, 1), y = c(0, 1)) |>
+  ggplot(aes(x, y)) +
   coord_equal()
 
 base_plot +
@@ -69,10 +69,10 @@ You can make your own arrowheads by supplying the `arrow_head` parameter
 a 2-column matrix of polygon points. I’ll make a simple triangle:
 
 ``` r
-triangle <- cbind(x = c(1, 0, 0),
+triangle <- cbind(x = c(1, 0, 0), 
                   y = c(0, .5, -.5))
 
-base_plot + 
+base_plot +
   geom_arrow(arrow_head = triangle)
 ```
 
@@ -103,8 +103,7 @@ you want.
 We can now use this output with ggarrow:
 
 ``` r
-
-base_plot + 
+base_plot +
   geom_arrow(arrow_head = my_arrowhead)
 ```
 
@@ -117,6 +116,7 @@ complicated, but it works for me.
 
 ``` r
 
+
 # Set defaults
 ggplot2::update_geom_defaults("arrow_segment",
                               list(
@@ -128,6 +128,7 @@ ggplot2::update_geom_defaults("text", list(family = "Asap Condensed"))
 ggplot2::update_geom_defaults("label", list(family = "Asap Condensed"))
 
   
+
 
 # Names and locations of latent variables
 d_latent <- tibble(
@@ -143,6 +144,7 @@ node_radius <- .15
 path_offset <- .03
 p_offset <- node_radius + path_offset
 
+
 # Paths between variables
 d_edge <- tibble(
   from = c("A", "A", "B"),
@@ -157,10 +159,7 @@ d_edge <- tibble(
               ),
             by = join_by(from)) |>
   left_join(d_latent |>
-              rename(to = construct,
-                     to_x = x,
-                     to_y = y),
-            by = join_by(to)) |>
+              rename(to = construct, to_x = x, to_y = y), by = join_by(to)) |>
   mutate(
     start_x = from_x + p_offset * (to_x - from_x),
     end_x = from_x + (1 - p_offset) * (to_x - from_x),
@@ -169,65 +168,66 @@ d_edge <- tibble(
   )
 
 # Function to create a plot and replace arrows
- mypath <- function(arrow_head = ggarrow::arrow_head_wings(),
-                    node_radius = .15,
-                    path_offset = .03,
-                    ...) {
-   p_offset <- node_radius + path_offset
-   ggplot(d_edge, aes(
-     x = start_x,
-     y = start_y,
-     xend = end_x,
-     yend = end_y
-   )) +
-     coord_equal() +
-     theme_void() +
-     geom_circle(
-       data = d_latent,
-       aes(
-         x0 = x,
-         y0 = y,
-         r = node_radius,
-         fill = construct
-       ),
-       color = NA,
-       inherit.aes = FALSE
-     ) +
-     geom_text(
-       data = d_latent,
-       aes(x = x, y = y, label = construct),
-       size = 18,
-       inherit.aes = FALSE,
-       color = "gray20"
-
-     ) +
-     theme(legend.position = "none") +
-     scale_fill_viridis_d(
-       option = "D",
-       begin = .2,
-       end = .8,
-       alpha = .5
-     ) +
-     geom_arrow_segment(arrow_head = arrow_head, 
-                        ...) +
-     geom_circle(aes(
-         x0 = from_x + .5 * (to_x - from_x),
-         y0 = from_y + .5 * (to_y - from_y),
-         r = .042),
-         fill = "white",
-         color = NA) +
-     geom_text(
-       aes(
-         x = from_x + .5 * (to_x - from_x),
-         y = from_y + .5 * (to_y - from_y),
-         label = value
-       ),
-       size = 6,
-       color = "gray20"
-
-     )
- }
- 
+mypath <- function(arrow_head = ggarrow::arrow_head_wings(),
+                   node_radius = .15,
+                   path_offset = .03,
+                   ...) {
+  p_offset <- node_radius + path_offset
+  ggplot(d_edge, aes(
+    x = start_x,
+    y = start_y,
+    xend = end_x,
+    yend = end_y
+  )) +
+    coord_equal() +
+    theme_void() +
+    geom_circle(
+      data = d_latent,
+      aes(
+        x0 = x,
+        y0 = y,
+        r = node_radius,
+        fill = construct
+      ),
+      color = NA,
+      inherit.aes = FALSE
+    ) +
+    geom_text(
+      data = d_latent,
+      aes(x = x, y = y, label = construct),
+      size = 18,
+      inherit.aes = FALSE,
+      color = "gray20"
+      
+    ) +
+    theme(legend.position = "none") +
+    scale_fill_viridis_d(
+      option = "D",
+      begin = .2,
+      end = .8,
+      alpha = .5
+    ) +
+    geom_arrow_segment(arrow_head = arrow_head, ...) +
+    geom_circle(
+      aes(
+        x0 = from_x + .5 * (to_x - from_x),
+        y0 = from_y + .5 * (to_y - from_y),
+        r = .042
+      ),
+      fill = "white",
+      color = NA
+    ) +
+    geom_text(
+      aes(
+        x = from_x + .5 * (to_x - from_x),
+        y = from_y + .5 * (to_y - from_y),
+        label = value
+      ),
+      size = 6,
+      color = "gray20"
+      
+    )
+}
 ```
 
 # Default Arrowhead from ggarrow
@@ -286,7 +286,6 @@ mypath(arrow_head = arrow_head_latex(undercontrols = NULL))
 You can plot any function you want…
 
 ``` r
-
 mypath(arrow_head_function(dnorm))
 ```
 
@@ -298,24 +297,24 @@ A list of bezier control points can make almost any shape.
 
 ``` r
 
+
 # A list of bezier curve control points
-enterprise <- list(
-  c(1,0,
-    .5,.3,
-    0,.3),
-  c(0, .3,
-    .80, -.125,
-    .075,-.3),
-  c(.075,-.3,
-    .5,-.3,
-    1,0)) |> 
-  arrow_head_bezier(plot = T) 
+enterprise <- list(c(1, 0, 
+                     .5, .3, 
+                     0, .3),
+                   c(0, .3, 
+                     .80, -.125, 
+                     .075, -.3),
+                   c(.075, -.3, 
+                     .5, -.3, 
+                     1, 0)) |>
+  arrow_head_bezier(plot = T)
 ```
 
 <img src="man/figures/README-startrek-1.png" width="100%" />
 
 ``` r
-  
+
 mypath(enterprise, length_head = 10)
 ```
 
