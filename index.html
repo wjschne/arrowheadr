@@ -83,7 +83,7 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The development version of arrowheadr can be installed by runnint this code:</p>
+<p>The development version of arrowheadr can be installed by running this code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If needed, install the remotes package first.</span></span>
 <span><span class="co"># install.package("remotes")</span></span>
@@ -103,8 +103,8 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Make simple plot for reuse</span></span>
-<span><span class="va">base_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="va">base_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">base_plot</span> <span class="op">+</span></span>
@@ -118,10 +118,10 @@
 <p><img src="reference/figures/README-resecting-1.png" width="100%"></p>
 <p>You can make your own arrowheads by supplying the <code>arrow_head</code> parameter a 2-column matrix of polygon points. I’ll make a simple triangle:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">triangle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">triangle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, </span>
 <span>                  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.5</span>, <span class="op">-</span><span class="fl">.5</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">base_plot</span> <span class="op">+</span> </span>
+<span><span class="va">base_plot</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">triangle</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-triangle-1.png" width="100%"></p>
 <p>You can make any shape you want. I made arrowheadr to facilitate getting complex shapes into the box that ggarrow functions expect.</p>
@@ -134,8 +134,7 @@
 <p>The pink rectangle shows where the arrow’s line will end. The arrowhead’s point is expected to be at (1,0), but you can do anything you want.</p>
 <p>We can now use this output with ggarrow:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">base_plot</span> <span class="op">+</span> </span>
+<code class="sourceCode R"><span><span class="va">base_plot</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">my_arrowhead</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-baseplot-1.png" width="100%"></p>
 </div>
@@ -145,6 +144,7 @@
 <p>I use ggarrow mostly for creating path diagrams. My setup is a bit complicated, but it works for me.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
+<span></span>
 <span><span class="co"># Set defaults</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/update_defaults.html" class="external-link">update_geom_defaults</a></span><span class="op">(</span><span class="st">"arrow_segment"</span>,</span>
 <span>                              <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -156,6 +156,7 @@
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/update_defaults.html" class="external-link">update_geom_defaults</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Asap Condensed"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>  </span>
+<span></span>
 <span></span>
 <span><span class="co"># Names and locations of latent variables</span></span>
 <span><span class="va">d_latent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
@@ -171,6 +172,7 @@
 <span><span class="va">path_offset</span> <span class="op">&lt;-</span> <span class="fl">.03</span></span>
 <span><span class="va">p_offset</span> <span class="op">&lt;-</span> <span class="va">node_radius</span> <span class="op">+</span> <span class="va">path_offset</span></span>
 <span></span>
+<span></span>
 <span><span class="co"># Paths between variables</span></span>
 <span><span class="va">d_edge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
 <span>  from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
@@ -185,10 +187,7 @@
 <span>              <span class="op">)</span>,</span>
 <span>            by <span class="op">=</span> <span class="fu">join_by</span><span class="op">(</span><span class="va">from</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">d_latent</span> <span class="op">|&gt;</span></span>
-<span>              <span class="fu">rename</span><span class="op">(</span>to <span class="op">=</span> <span class="va">construct</span>,</span>
-<span>                     to_x <span class="op">=</span> <span class="va">x</span>,</span>
-<span>                     to_y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>,</span>
-<span>            by <span class="op">=</span> <span class="fu">join_by</span><span class="op">(</span><span class="va">to</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>              <span class="fu">rename</span><span class="op">(</span>to <span class="op">=</span> <span class="va">construct</span>, to_x <span class="op">=</span> <span class="va">x</span>, to_y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu">join_by</span><span class="op">(</span><span class="va">to</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    start_x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="va">p_offset</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
 <span>    end_x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_offset</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
@@ -197,65 +196,66 @@
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Function to create a plot and replace arrows</span></span>
-<span> <span class="va">mypath</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arrow_head</span> <span class="op">=</span> <span class="fu">ggarrow</span><span class="fu">::</span><span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/arrow_ornaments.html" class="external-link">arrow_head_wings</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                    <span class="va">node_radius</span> <span class="op">=</span> <span class="fl">.15</span>,</span>
-<span>                    <span class="va">path_offset</span> <span class="op">=</span> <span class="fl">.03</span>,</span>
-<span>                    <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>   <span class="va">p_offset</span> <span class="op">&lt;-</span> <span class="va">node_radius</span> <span class="op">+</span> <span class="va">path_offset</span></span>
-<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d_edge</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>     x <span class="op">=</span> <span class="va">start_x</span>,</span>
-<span>     y <span class="op">=</span> <span class="va">start_y</span>,</span>
-<span>     xend <span class="op">=</span> <span class="va">end_x</span>,</span>
-<span>     yend <span class="op">=</span> <span class="va">end_y</span></span>
-<span>   <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu">geom_circle</span><span class="op">(</span></span>
-<span>       data <span class="op">=</span> <span class="va">d_latent</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>         x0 <span class="op">=</span> <span class="va">x</span>,</span>
-<span>         y0 <span class="op">=</span> <span class="va">y</span>,</span>
-<span>         r <span class="op">=</span> <span class="va">node_radius</span>,</span>
-<span>         fill <span class="op">=</span> <span class="va">construct</span></span>
-<span>       <span class="op">)</span>,</span>
-<span>       color <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>       inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>     <span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span></span>
-<span>       data <span class="op">=</span> <span class="va">d_latent</span>,</span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">construct</span><span class="op">)</span>,</span>
-<span>       size <span class="op">=</span> <span class="fl">18</span>,</span>
-<span>       inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>       color <span class="op">=</span> <span class="st">"gray20"</span></span>
-<span></span>
-<span>     <span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span></span>
-<span>       option <span class="op">=</span> <span class="st">"D"</span>,</span>
-<span>       begin <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span>       end <span class="op">=</span> <span class="fl">.8</span>,</span>
-<span>       alpha <span class="op">=</span> <span class="fl">.5</span></span>
-<span>     <span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow_segment.html" class="external-link">geom_arrow_segment</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">arrow_head</span>, </span>
-<span>                        <span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu">geom_circle</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>         x0 <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
-<span>         y0 <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
-<span>         r <span class="op">=</span> <span class="fl">.042</span><span class="op">)</span>,</span>
-<span>         fill <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>         color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span></span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>         x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
-<span>         y <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
-<span>         label <span class="op">=</span> <span class="va">value</span></span>
-<span>       <span class="op">)</span>,</span>
-<span>       size <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>       color <span class="op">=</span> <span class="st">"gray20"</span></span>
-<span></span>
-<span>     <span class="op">)</span></span>
-<span> <span class="op">}</span></span>
-<span> </span></code></pre></div>
+<span><span class="va">mypath</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arrow_head</span> <span class="op">=</span> <span class="fu">ggarrow</span><span class="fu">::</span><span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/arrow_ornaments.html" class="external-link">arrow_head_wings</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   <span class="va">node_radius</span> <span class="op">=</span> <span class="fl">.15</span>,</span>
+<span>                   <span class="va">path_offset</span> <span class="op">=</span> <span class="fl">.03</span>,</span>
+<span>                   <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">p_offset</span> <span class="op">&lt;-</span> <span class="va">node_radius</span> <span class="op">+</span> <span class="va">path_offset</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d_edge</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">start_x</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">start_y</span>,</span>
+<span>    xend <span class="op">=</span> <span class="va">end_x</span>,</span>
+<span>    yend <span class="op">=</span> <span class="va">end_y</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_circle</span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">d_latent</span>,</span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
+<span>        x0 <span class="op">=</span> <span class="va">x</span>,</span>
+<span>        y0 <span class="op">=</span> <span class="va">y</span>,</span>
+<span>        r <span class="op">=</span> <span class="va">node_radius</span>,</span>
+<span>        fill <span class="op">=</span> <span class="va">construct</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      color <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>      inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">d_latent</span>,</span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">construct</span><span class="op">)</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">18</span>,</span>
+<span>      inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"gray20"</span></span>
+<span>      </span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>      option <span class="op">=</span> <span class="st">"D"</span>,</span>
+<span>      begin <span class="op">=</span> <span class="fl">.2</span>,</span>
+<span>      end <span class="op">=</span> <span class="fl">.8</span>,</span>
+<span>      alpha <span class="op">=</span> <span class="fl">.5</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow_segment.html" class="external-link">geom_arrow_segment</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">arrow_head</span>, <span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_circle</span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
+<span>        x0 <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
+<span>        y0 <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
+<span>        r <span class="op">=</span> <span class="fl">.042</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      fill <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>      color <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
+<span>        x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
+<span>        y <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
+<span>        label <span class="op">=</span> <span class="va">value</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"gray20"</span></span>
+<span>      </span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="default-arrowhead-from-ggarrow">Default Arrowhead from ggarrow<a class="anchor" aria-label="anchor" href="#default-arrowhead-from-ggarrow"></a>
@@ -302,8 +302,7 @@
 </h1>
 <p>You can plot any function you want…</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_function.html">arrow_head_function</a></span><span class="op">(</span><span class="va">dnorm</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_function.html">arrow_head_function</a></span><span class="op">(</span><span class="va">dnorm</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-dnorm-1.png" width="100%"></p>
 </div>
 <div class="section level1">
@@ -312,21 +311,21 @@
 <p>A list of bezier control points can make almost any shape.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
+<span></span>
 <span><span class="co"># A list of bezier curve control points</span></span>
-<span><span class="va">enterprise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,</span>
-<span>    <span class="fl">.5</span>,<span class="fl">.3</span>,</span>
-<span>    <span class="fl">0</span>,<span class="fl">.3</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.3</span>,</span>
-<span>    <span class="fl">.80</span>, <span class="op">-</span><span class="fl">.125</span>,</span>
-<span>    <span class="fl">.075</span>,<span class="op">-</span><span class="fl">.3</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.075</span>,<span class="op">-</span><span class="fl">.3</span>,</span>
-<span>    <span class="fl">.5</span>,<span class="op">-</span><span class="fl">.3</span>,</span>
-<span>    <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="reference/arrow_head_bezier.html">arrow_head_bezier</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </span></code></pre></div>
+<span><span class="va">enterprise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, </span>
+<span>                     <span class="fl">.5</span>, <span class="fl">.3</span>, </span>
+<span>                     <span class="fl">0</span>, <span class="fl">.3</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.3</span>, </span>
+<span>                     <span class="fl">.80</span>, <span class="op">-</span><span class="fl">.125</span>, </span>
+<span>                     <span class="fl">.075</span>, <span class="op">-</span><span class="fl">.3</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.075</span>, <span class="op">-</span><span class="fl">.3</span>, </span>
+<span>                     <span class="fl">.5</span>, <span class="op">-</span><span class="fl">.3</span>, </span>
+<span>                     <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/arrow_head_bezier.html">arrow_head_bezier</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-startrek-1.png" width="100%"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span>  </span>
+<code class="sourceCode R"><span></span>
 <span><span class="fu">mypath</span><span class="op">(</span><span class="va">enterprise</span>, length_head <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-startrek-2.png" width="100%"></p>
 </div>
