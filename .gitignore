@@ -22,3 +22,5 @@ vignettes/*.pdf
 .Renviron
 .DS_Store
 revdep/
+
+/.quarto/
