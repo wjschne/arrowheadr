@@ -37,6 +37,6 @@ Do transformations in a desired order
 }
 \examples{
 
-matrix(c(0,0,1,1), nrow = 2) |>
-  transformer(transformations = "rotater", rotate = pi)
+xy <- matrix(c(0,0,1,1), nrow = 2)
+transformer(xy, transformations = "rotater", rotate = pi)
 }

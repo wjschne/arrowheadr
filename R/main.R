@@ -25,7 +25,7 @@ unitizer <- function(x, center = rep(0, ncol(x))) {
   centered <- x - matrix(rep(center, nr), ncol = nc, byrow = TRUE)
 
   # The maximum distance from the center
-  maxdist <- max(apply(centered, 1, \(a) sqrt(sum(a ^ 2))))
+  maxdist <- max(apply(centered, 1, function(a) sqrt(sum(a ^ 2))))
   # Rescale by the maximum distance
   result <- centered / maxdist
   colnames(result) <- colnames(x)
@@ -180,8 +180,8 @@ rotater <- function(x,
 #'
 #' @examples
 #'
-#' matrix(c(0,0,1,1), nrow = 2) |>
-#'   transformer(transformations = "rotater", rotate = pi)
+#' xy <- matrix(c(0,0,1,1), nrow = 2)
+#' transformer(xy, transformations = "rotater", rotate = pi)
 transformer <- function(x,
                         rescale = c(1, 1),
                         rotate = 0,
@@ -233,8 +233,9 @@ v2matrix <- function(x, ncol = 2, byrow = TRUE) {
   else
     vnames <- paste0("x", seq(ncol))
 
-  matrix(x, ncol = ncol, byrow = byrow) |>
-    `colnames<-`(vnames)
+  xy <- matrix(x, ncol = ncol, byrow = byrow)
+  xy <- `colnames<-`(xy, vnames)
+  xy
 }
 
 
@@ -374,22 +375,25 @@ arrow_head_bezier <- function(x,
                               show_controls = TRUE) {
   t <- seq(0, 1, length.out = n)
 
-  controls <- purrr::map(x, \(p) {
+  controls <- purrr::map(x, function(p) {
     if (!is.matrix(p)) {
       p <- v2matrix(p)
     }
     p
   })
 
-  xy <- purrr::map(controls, \(p) {
+  xy <- purrr::map(controls, function(p) {
     if (nrow(p) > 2)
       bezier::bezier(t, p = p)
     else
       p
-  }) |>
-    do.call(what = rbind) |>
-    `colnames<-`(c("x", "y")) |>
-    transformer(
+  })
+
+  xy <- do.call(xy, what = rbind)
+
+  xy <- `colnames<-`(xy, c("x", "y"))
+
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -399,10 +403,9 @@ arrow_head_bezier <- function(x,
   if (plot) {
     plot_arrowhead(xy)
     if (show_controls) {
-      xy_controls <- controls |>
-        do.call(what = rbind) |>
-        `colnames<-`(c("x", "y")) |>
-        transformer(
+      xy_controls <- do.call(controls, what = rbind)
+      xy_controls <- `colnames<-`(xy_controls, c("x", "y"))
+      transformer(xy_controls,
           rescale = rescale,
           rotate = rotate,
           nudge = nudge,
@@ -466,14 +469,15 @@ arrow_head_ellipse <- function(a = 1,
     stop("superellipse must be of length 1 or 2")
   }
   xy <- cbind(x = a * sign(cos(t)) * (abs(cos(t)) ^ (2 / superellipse[1])),
-              y = b * sign(sin(t)) * (abs(sin(t)) ^ (2 / superellipse[2]))) |>
-    transformer(
+              y = b * sign(sin(t)) * (abs(sin(t)) ^ (2 / superellipse[2])))
+
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
       transformations = transformations
-    ) |>
-    `colnames<-`(c("x", "y"))
+    )
+  xy <- `colnames<-`(xy, c("x", "y"))
   if (plot) {
     plot_arrowhead(xy)
   }
@@ -516,12 +520,12 @@ arrow_head_harpoon <- function(point_angle = 30,
   p3_x <- (p3_y - l23_intercept) / m1
   p3 <- c(p3_x, p3_y)
 
-  xy <- c(p1, p2, p3) |>
-    v2matrix() |>
-    nudger(c(-p3[1], 0)) |>
-    rescaler(1 / (1 - p3[1])) |>
-    `colnames<-`(c("x", "y")) |>
-    transformer(
+  xy <- c(p1, p2, p3)
+  xy <- v2matrix(xy)
+  xy <- nudger(xy, c(-p3[1], 0))
+  xy <- rescaler(xy, 1 / (1 - p3[1]))
+  xy <- `colnames<-`(xy, c("x", "y"))
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -582,8 +586,8 @@ arrow_head_hypotrochoid <- function(r = 4,
   x <- (R - r) * cos(theta) + d * cos(theta * (R - r) / r)
   y <- (R - r) * sin(theta) + d * sin(theta * (R - r) / r)
 
-  xy <- cbind(x = x, y = y) |>
-    transformer(
+  xy <- cbind(x = x, y = y)
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -669,8 +673,8 @@ arrow_head_wittgenstein_rod <- function(
   d <- sqrt((cx - fpx) ^ 2 + (cy - fpy) ^ 2)
   x <- ((fpx - cx) / d) * rod_length  + cx
   y <- ((fpy - cy) / d) * rod_length + cy
-  xy <- cbind(x = x - fpx, y = y - fpy) |>
-    transformer(
+  xy <- cbind(x = x - fpx, y = y - fpy)
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -705,9 +709,9 @@ arrow_head_trefoil <- function(rotate = 0,
   t <- seq(0, 2 * pi, length.out = n)
   x <- sin(t) + 2 * sin(2 * t)
   y <- cos(t) - 2 * cos(2 * t)
-  xy <- cbind(x = x, y = y) |>
-    rotater(theta = pi / 2) |>
-    transformer(
+  xy <- cbind(x = x, y = y)
+  xy <- rotater(xy, theta = pi / 2)
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -773,9 +777,8 @@ arrow_head_catenary <- function(a = 1,
     y <- c(y, y1)
 
   }
-  xy <- cbind(x = 2 * y - 1, y = x) |>
-    # rotater(theta = pi / 2) |>
-    transformer(
+  xy <- cbind(x = 2 * y - 1, y = x)
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -830,12 +833,9 @@ arrow_head_latex <- function(point = c(1, 0),
                              transformations = c("rotater", "rescaler", "nudger"),
                              n = 101,
                              plot = FALSE) {
-  leftside <- c(point, sidecontrols, p_barb) |>
-    v2matrix()
+  leftside <- v2matrix(c(point, sidecontrols, p_barb))
 
-  under_side <- c(p_barb, undercontrols) |>
-    v2matrix() |>
-    reflecter()
+  under_side <- reflecter(v2matrix(c(p_barb, undercontrols)))
 
 
   rightside <- reflecter(leftside, add_reflection = FALSE)
@@ -847,8 +847,8 @@ arrow_head_latex <- function(point = c(1, 0),
                    under_side = under_side,
                    rightside = rightside)
 
-  xy <- arrow_head_bezier(controls) |>
-    transformer(
+  xy <- arrow_head_bezier(controls)
+  xy <- transformer(xy,
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -857,10 +857,9 @@ arrow_head_latex <- function(point = c(1, 0),
 
   if (plot) {
     plot_arrowhead(xy)
-    xy_controls <- controls |>
-      do.call(what = rbind) |>
-      `colnames<-`(c("x", "y")) |>
-      transformer(
+    xy_controls <- do.call(controls, what = rbind)
+    xy_controls <- `colnames<-`(xy_controls, c("x", "y"))
+    xy_controls <- transformer(xy_controls,
         rescale = rescale,
         rotate = rotate,
         nudge = nudge,
@@ -895,9 +894,7 @@ arrow_head_icon <- function(x = "stardestoyer",
                             nudge = c(0, 0),
                             transformations = c("rotater", "rescaler", "nudger"),
                             plot = FALSE) {
-  xy <- icons[icons$icon == x, c("x", "y")] |>
-    as.matrix() |>
-    transformer(
+  xy <- transformer(as.matrix(icons[icons$icon == x, c("x", "y")]),
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,
@@ -1015,9 +1012,7 @@ arrow_head_function <- function(.fun = stats::dnorm,
 
   }
   y <- 2 * y - 1
-  xy <- cbind(x = y, y = x) |>
-    # rotater(theta = pi / 2) |>
-    transformer(
+  xy <- transformer(cbind(x = y, y = x),
       rescale = rescale,
       rotate = rotate,
       nudge = nudge,

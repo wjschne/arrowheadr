@@ -2,12 +2,3 @@ url: https://wjschne.github.io/arrowheadr/
 template:
   bootstrap: 5
 
-figures:
-  dev: ragg::agg_png
-  dev.args:
-     pointsize: 12
-  fig.ext: png
-  fig.width: 7.2916667
-  fig.height: ~
-  fig.retina: 2
-  fig.asp: 1
