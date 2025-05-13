@@ -1,7 +1,7 @@
 Type: Package
 Package: arrowheadr
 Title: Make Custom Arrowheads
-Version: 1.0.2
+Version: 1.0.1
 Authors@R: 
     person("W. Joel", "Schneider", , "w.joel.schneider@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8393-5316"))
