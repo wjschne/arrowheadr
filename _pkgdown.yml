@@ -1,4 +1,5 @@
 url: https://wjschne.github.io/arrowheadr/
 template:
   bootstrap: 5
+  bootswatch: journal
 
