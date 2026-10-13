@@ -24,3 +24,5 @@ vignettes/*.pdf
 revdep/
 
 /.quarto/
+**/.quarto/
+.positai

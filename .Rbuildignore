@@ -12,3 +12,8 @@
 ^revdep$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^vignettes/articles/\.quarto$
+^vignettes/articles/*_files$
+^vignettes/articles$
+^\.positai$
+^\.claude$

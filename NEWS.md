@@ -1,6 +1,10 @@
 # arrowheadr (development version)
 
-# arrowheadr 1.0.2
+# arrowheadr 1.1.0 _2026-05-02_
+
+* Reorganized Tutorial
+* Added function to make reuleaux polygons
+* Added new icons and make them available as the `arrowheads` list object 
 
 # arrowheadr 1.0.2 _2025-05-12_
 

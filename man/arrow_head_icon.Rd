@@ -14,7 +14,7 @@ arrow_head_icon(
 )
 }
 \arguments{
-\item{x}{name of icon: eiffel, viper, viper2, nighthawk, pantherxf70}
+\item{x}{name of icon: chippenham, eiffel, enterprise, executor, flame, gateway, latex, latexprime, leaf, lozenge, nighthawk, pantherxf70, saxon, spade, stardestoyer, vikingleaf, viper, viper2}
 
 \item{rotate}{rotation angle in radians}
 
@@ -40,4 +40,7 @@ battlestar_galactica_viper <- arrow_head_icon(x = "viper", plot = TRUE)
 battlestar_galactica_viper2 <- arrow_head_icon(x = "viper2", plot = TRUE)
 nighthawk <- arrow_head_icon(x = "nighthawk", plot = TRUE)
 panther_xf70 <- arrow_head_icon(x = "pantherxf70", plot = TRUE)
+leaf <- arrow_head_icon(x = "leaf", plot = TRUE)
+lozenge <- arrow_head_icon(x = "lozenge", plot = TRUE)
+spade <- arrow_head_icon(x = "spade", plot = TRUE)
 }

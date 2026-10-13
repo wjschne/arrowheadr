@@ -132,7 +132,7 @@ rotater <- function(x,
   if ("matrix" %in% class(center)) {
     if (ncol(center) != 2)
       stop("center must be a 2-column matrix or a length-2 vector")
-    if (nrow(center == 1))
+    if (nrow(center) == 1)
       center <- matrix(center,
                        nrow = nrow(x),
                        ncol = 2,
@@ -389,7 +389,7 @@ arrow_head_bezier <- function(x,
       p
   })
 
-  xy <- do.call(xy, what = rbind)
+  xy <- do.call(rbind, xy)
 
   xy <- `colnames<-`(xy, c("x", "y"))
 
@@ -403,7 +403,7 @@ arrow_head_bezier <- function(x,
   if (plot) {
     plot_arrowhead(xy)
     if (show_controls) {
-      xy_controls <- do.call(controls, what = rbind)
+      xy_controls <- do.call(rbind, controls)
       xy_controls <- `colnames<-`(xy_controls, c("x", "y"))
       transformer(xy_controls,
           rescale = rescale,
@@ -463,9 +463,9 @@ arrow_head_ellipse <- function(a = 1,
                                n = 361,
                                plot = FALSE) {
   t <- seq(0, 2 * pi, length.out = n)
-  if (length(superellipse == 1)) {
+  if (length(superellipse) == 1L) {
     superellipse <- rep(superellipse, 2)
-  } else if (!(length(superellipse) %in% c(1, 2))) {
+  } else if (!(length(superellipse) %in% c(1L, 2L))) {
     stop("superellipse must be of length 1 or 2")
   }
   xy <- cbind(x = a * sign(cos(t)) * (abs(cos(t)) ^ (2 / superellipse[1])),
@@ -627,6 +627,50 @@ arrow_head_deltoid <- function(d = 2.6,
   )
 }
 
+
+#' Make reuleaux polygons
+#'
+#' @param n number of vertices
+#' @inheritParams arrow_head_default
+#'
+#' @return a matrix
+#' @export
+#'
+#' @examples
+#' triangle <- arrow_head_reuleaux(plot = TRUE)
+#' diamond <- arrow_head_reuleaux(n = 4, plot = TRUE)
+#' acute_triangle <- triangle <- arrow_head_reuleaux(rescale = c(1, .5), plot = TRUE)
+#' sharp_diamond <- arrow_head_reuleaux(n = 4, rescale = c(1, .4), plot = TRUE)
+arrow_head_reuleaux <- function(n = 3,
+                                    rotate = 0,
+                                    rescale = c(1, 1),
+                                    nudge = c(0, 0),
+                                    transformations = c("unitizer",
+                                                        "rotater",
+                                                        "rescaler",
+                                                        "nudger"),
+                                    plot = FALSE) {
+  theta <- seq(0, 2 * pi, length.out = 361)
+  g <- (pi / n) * (2 * floor(n * theta / (2 * pi)) + 1)
+
+  x <- 2 * cos(pi / (2 * n)) * cos(.5 * (theta + g)) - cos(g)
+  y <- 2 * cos(pi / (2 * n)) * sin(.5 * (theta + g)) - sin(g)
+
+  xy <- cbind(x = x, y = y)
+  xy <- transformer(xy,
+                    rescale = rescale,
+                    rotate = rotate,
+                    nudge = nudge,
+                    transformations = transformations
+  )
+
+  if (plot) {
+    plot_arrowhead(xy)
+  }
+
+  xy
+
+}
 
 #' Make arrowhead with Wittengenstein's Rod
 #'
@@ -857,7 +901,7 @@ arrow_head_latex <- function(point = c(1, 0),
 
   if (plot) {
     plot_arrowhead(xy)
-    xy_controls <- do.call(controls, what = rbind)
+    xy_controls <- do.call(rbind, controls)
     xy_controls <- `colnames<-`(xy_controls, c("x", "y"))
     xy_controls <- transformer(xy_controls,
         rescale = rescale,
@@ -874,7 +918,7 @@ arrow_head_latex <- function(point = c(1, 0),
 
 #' Make arrowhead from preset icon
 #'
-#' @param x name of icon: eiffel, viper, viper2, nighthawk, pantherxf70
+#' @param x name of icon: chippenham, eiffel, enterprise, executor, flame, gateway, latex, latexprime, leaf, lozenge, nighthawk, pantherxf70, saxon, spade, stardestoyer, vikingleaf, viper, viper2
 #' @inheritParams arrow_head_default
 #'
 #' @return a matrix
@@ -888,6 +932,9 @@ arrow_head_latex <- function(point = c(1, 0),
 #' battlestar_galactica_viper2 <- arrow_head_icon(x = "viper2", plot = TRUE)
 #' nighthawk <- arrow_head_icon(x = "nighthawk", plot = TRUE)
 #' panther_xf70 <- arrow_head_icon(x = "pantherxf70", plot = TRUE)
+#' leaf <- arrow_head_icon(x = "leaf", plot = TRUE)
+#' lozenge <- arrow_head_icon(x = "lozenge", plot = TRUE)
+#' spade <- arrow_head_icon(x = "spade", plot = TRUE)
 arrow_head_icon <- function(x = "stardestoyer",
                             rotate = 0,
                             rescale = c(1, 1),
@@ -1026,3 +1073,32 @@ arrow_head_function <- function(.fun = stats::dnorm,
   xy
 
 }
+
+
+#' Arrowheads
+#'
+#' A list of pre-built arrowheads
+#'
+#' @format ## `arrowheads`
+#' A list of matrices with xy coordinates
+#' \describe{
+#'   \item{chippenham}{Chippenham arrowhead}
+#'   \item{eiffel}{Outline of the Eiffel tower}
+#'   \item{enterprise}{Outline of Star Trek USS Enterprise insignia}
+#'   \item{executor}{Outline of the Executor spacecraft from Star Wars}
+#'   \item{flame}{Flame-shaped arrowhead}
+#'   \item{gateway}{Inpsired by the St. Louis Gateway arch}
+#'   \item{latex}{Inspired by TikZ's latex arrowhead}
+#'   \item{latexprime}{Inspired by TikZ's latex' arrowhead}
+#'   \item{leaf}{Curved leaf arrowhead}
+#'   \item{lozenge}{Rhombus-shaped arrowhead}
+#'   \item{nighthawk}{Outline of the Lockheed F-117 Nighthawk stealth aircraft}
+#'   \item{pantherxf70}{Outline of the Lockheed XF-70 Panther  aircraft}
+#'   \item{saxon}{Saxon arrowhead}
+#'   \item{spade}{Outline of a spade}
+#'   \item{stardestoyer}{Outline of a Star Destroyer spacecraft from Star Wars}
+#'   \item{vikingleaf}{Viking leaf arrowhead}
+#'   \item{viper}{Outline of the Viper spacecraft from the original television series Battlestar Galactica}
+#'   \item{viper2}{Outline of the Viper spacecraft from the rebooted television series Battlestar Galactica}
+#' }
+"arrowheads"
