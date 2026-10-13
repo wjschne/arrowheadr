@@ -82,42 +82,61 @@
 </h1>
 <p>The ggarrow package makes it possible to create a wide variety of arrows. The arrowheadr package makes it easy to create custom arrowheads.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>theta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">300</span>, <span class="fl">60</span><span class="op">)</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">/</span> <span class="fl">180</span>,</span>
-<span>           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span>,</span>
-<span>           y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span></span>
+<span>  theta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span>, <span class="fl">60</span><span class="op">)</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">/</span> <span class="fl">180</span>,</span>
+<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span>,</span>
+<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_arrow_segment</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xend <span class="op">=</span> <span class="va">x</span>, yend <span class="op">=</span> <span class="va">y</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span><span class="op">)</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-1-1.png" style="width:100.0%"></p>
+<span>  <span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_arrow_segment</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span></span>
+<span>    xend <span class="op">=</span> <span class="va">x</span>,</span>
+<span>    yend <span class="op">=</span> <span class="va">y</span>,</span>
+<span>    x <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    y <span class="op">=</span> <span class="fl">0</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div id="fig-arrow">
+<p><img src="reference/figures/README-fig-arrow-1.png" style="width:100.0%" data-fig-alt="Arrows pointing outward from a common point" alt="Arrows pointing outward from a common point"></p>
+<p>Figure 1: Using arrowheadr with ggarrow</p>
+</div>
 <p>The ggdiagram package also uses arrowheadr and ggarrow under the hood.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a circle</span></span>
-<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu">ob_circle</span><span class="op">(</span>center <span class="op">=</span> <span class="fu">ob_point</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>                  radius <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu">ob_circle</span><span class="op">(</span>center <span class="op">=</span> <span class="fu">ob_point</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, radius <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Make angles evenly spaced around a circle</span></span>
-<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">degree</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">330</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">degree</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">330</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Make ring of points around the circle</span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ob_point</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">place</span><span class="op">(</span>from <span class="op">=</span> <span class="va">A</span>, </span>
-<span>        where <span class="op">=</span> <span class="va">theta</span>,</span>
-<span>        sep <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ob_point</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">place</span><span class="op">(</span>from <span class="op">=</span> <span class="va">A</span>, where <span class="op">=</span> <span class="va">theta</span>, sep <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Make rotated squares</span></span>
 <span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu">ob_rectangle</span><span class="op">(</span>center <span class="op">=</span> <span class="va">p</span>, angle <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="fu">ggdiagram</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="va">A</span> <span class="op">+</span> </span>
-<span>  <span class="va">B</span> <span class="op">+</span> </span>
+<span><span class="fu">ggdiagram</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">A</span> <span class="op">+</span></span>
+<span>  <span class="va">B</span> <span class="op">+</span></span>
 <span>  <span class="co"># Arrows from A to B</span></span>
-<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">A</span>, </span>
+<span>          <span class="va">B</span>, </span>
+<span>          resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Straight arrows from B to adjacent B</span></span>
-<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">B</span><span class="op">@</span><span class="va">north</span>, <span class="va">B</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">south</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">B</span><span class="op">@</span><span class="va">north</span>, </span>
+<span>          <span class="va">B</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">south</span>, </span>
+<span>          resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Arc arrows from B to adjacent B</span></span>
-<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">B</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">east</span>, <span class="va">B</span><span class="op">@</span><span class="va">east</span>, arc_bend <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-1.png" style="width:100.0%"></p>
+<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">B</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">east</span>, </span>
+<span>          <span class="va">B</span><span class="op">@</span><span class="va">east</span>, </span>
+<span>          arc_bend <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, </span>
+<span>          resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div id="fig-ggdiagram">
+<p><img src="reference/figures/README-fig-ggdiagram-1.png" style="width:100.0%" data-fig-alt="Rectangle arranged in a circle, connected with arrows" alt="Rectangle arranged in a circle, connected with arrows"></p>
+<p>Figure 2: Using arrowheadr with ggdiagram</p>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">

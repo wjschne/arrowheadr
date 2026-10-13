@@ -10,7 +10,7 @@ arrowheads
 
 ## Format
 
-### `arrowheads`
+### Structure
 
 A list of matrices with xy coordinates
 
