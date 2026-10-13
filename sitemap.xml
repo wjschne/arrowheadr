@@ -1,6 +1,8 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://wjschne.github.io/arrowheadr/404.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/LICENSE.html</loc></url>
+<url><loc>https://wjschne.github.io/arrowheadr/articles/arrowheadr.html</loc></url>
+<url><loc>https://wjschne.github.io/arrowheadr/articles/index.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/authors.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/index.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/news/index.html</loc></url>
@@ -13,8 +15,10 @@
 <url><loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_hypotrochoid.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_icon.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_latex.html</loc></url>
+<url><loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_reuleaux.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_trefoil.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/arrow_head_wittgenstein_rod.html</loc></url>
+<url><loc>https://wjschne.github.io/arrowheadr/reference/arrowheads.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/index.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/nudger.html</loc></url>
 <url><loc>https://wjschne.github.io/arrowheadr/reference/plot_arrowhead.html</loc></url>

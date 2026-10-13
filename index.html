@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="favicon.ico">
 <link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Make Custom Arrowheads">
 <meta name="description" content="The ggarrow package is a ggplot2 extension that plots a variety of different arrow segments with many options to customize. The arrowheadr package makes it easy to create custom arrowheads and fins within the parameters that ggarrow functions expect. It has preset arrowheads and a collection of functions to create and transform data for customizing arrows.">
@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">arrowheadr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/arrowheadr.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
@@ -77,326 +78,46 @@
 </div>
 </div>
 <div class="section level1">
-<h1 id="the-ggarrow-package-is-fantastic">The ggarrow package is fantastic!<a class="anchor" aria-label="anchor" href="#the-ggarrow-package-is-fantastic"></a>
+<h1 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h1>
-<p>Teun van den Brand’s <a href="https://teunbrand.github.io/ggarrow/" class="external-link">ggarrow</a> package gives us the ability to make great-looking arrows in ggplot2.</p>
+<p>The ggarrow package makes it possible to create a wide variety of arrows. The arrowheadr package makes it easy to create custom arrowheads.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wjschne/arrowheadr" class="external-link">arrowheadr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://teunbrand.github.io/ggarrow/" class="external-link">ggarrow</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggforce.data-imaginist.com" class="external-link">ggforce</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Make simple plot for reuse</span></span>
-<span><span class="va">base_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">base_plot</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-withggarrow-1.png" width="100%"></p>
-<p>I particularly like that the arrow functions can resect the arrows such that I can put a little space between the arrows and they objects they connect.</p>
+<code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>theta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">300</span>, <span class="fl">60</span><span class="op">)</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">/</span> <span class="fl">180</span>,</span>
+<span>           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span>,</span>
+<span>           y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">theta</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_arrow_segment</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xend <span class="op">=</span> <span class="va">x</span>, yend <span class="op">=</span> <span class="va">y</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span><span class="op">)</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-1-1.png" style="width:100.0%"></p>
+<p>The ggdiagram package also uses arrowheadr and ggarrow under the hood.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">base_plot</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>resect <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-resecting-1.png" width="100%"></p>
-<p>You can make your own arrowheads by supplying the <code>arrow_head</code> parameter a 2-column matrix of polygon points. I’ll make a simple triangle:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">triangle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, </span>
-<span>                  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.5</span>, <span class="op">-</span><span class="fl">.5</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Make a circle</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu">ob_circle</span><span class="op">(</span>center <span class="op">=</span> <span class="fu">ob_point</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>                  radius <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">base_plot</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">triangle</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-triangle-1.png" width="100%"></p>
-<p>You can make any shape you want. I made arrowheadr to facilitate getting complex shapes into the box that ggarrow functions expect.</p>
-<p>The arrowheadr functions do not depend on ggarrow, but were designed to be used with ggarrow. The main <code>arrow_head_*</code> functions return a matrix with columns <code>x</code> and <code>y</code> to create a polygon fitting in a square from −1 to 1 on both the <em>x</em> and <em>y</em> axes.</p>
-<p>The main <code>arrow_head_*</code> functions have an optional <code>plot</code> argument to show what polygon will be used:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wjschne/arrowheadr" class="external-link">arrowheadr</a></span><span class="op">)</span></span>
-<span><span class="va">my_arrowhead</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-exampleplot-1.png" width="100%"></p>
-<p>The pink rectangle shows where the arrow’s line will end. The arrowhead’s point is expected to be at (1,0), but you can do anything you want.</p>
-<p>We can now use this output with ggarrow:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">base_plot</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">my_arrowhead</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-baseplot-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="examples-with-ggarrow">Examples with ggarrow<a class="anchor" aria-label="anchor" href="#examples-with-ggarrow"></a>
-</h1>
-<p>I use ggarrow mostly for creating path diagrams. My setup is a bit complicated, but it works for me.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co"># Make angles evenly spaced around a circle</span></span>
+<span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu">degree</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">330</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Set defaults</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/update_defaults.html" class="external-link">update_geom_defaults</a></span><span class="op">(</span><span class="st">"arrow_segment"</span>,</span>
-<span>                              <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>                                length_head <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>                                linewidth <span class="op">=</span> <span class="fl">1.5</span>,</span>
-<span>                                color <span class="op">=</span> <span class="st">"gray20"</span></span>
-<span>                              <span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/update_defaults.html" class="external-link">update_geom_defaults</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Asap Condensed"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/update_defaults.html" class="external-link">update_geom_defaults</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Asap Condensed"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Make ring of points around the circle</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ob_point</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">place</span><span class="op">(</span>from <span class="op">=</span> <span class="va">A</span>, </span>
+<span>        where <span class="op">=</span> <span class="va">theta</span>,</span>
+<span>        sep <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
-<span>  </span>
+<span><span class="co"># Make rotated squares</span></span>
+<span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu">ob_rectangle</span><span class="op">(</span>center <span class="op">=</span> <span class="va">p</span>, angle <span class="op">=</span> <span class="va">theta</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="co"># Names and locations of latent variables</span></span>
-<span><span class="va">d_latent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.5</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>  construct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Circle size</span></span>
-<span><span class="va">node_radius</span> <span class="op">&lt;-</span> <span class="fl">.15</span></span>
-<span></span>
-<span><span class="co"># Distance from circle to start and end arrows</span></span>
-<span><span class="va">path_offset</span> <span class="op">&lt;-</span> <span class="fl">.03</span></span>
-<span><span class="va">p_offset</span> <span class="op">&lt;-</span> <span class="va">node_radius</span> <span class="op">+</span> <span class="va">path_offset</span></span>
-<span></span>
-<span></span>
-<span><span class="co"># Paths between variables</span></span>
-<span><span class="va">d_edge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
-<span>  to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span><span class="op">)</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">".75"</span>, <span class="st">".11"</span>, <span class="st">".90"</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">d_latent</span> <span class="op">|&gt;</span></span>
-<span>              <span class="fu">rename</span><span class="op">(</span></span>
-<span>                from <span class="op">=</span> <span class="va">construct</span>,</span>
-<span>                from_x <span class="op">=</span> <span class="va">x</span>,</span>
-<span>                from_y <span class="op">=</span> <span class="va">y</span></span>
-<span>              <span class="op">)</span>,</span>
-<span>            by <span class="op">=</span> <span class="fu">join_by</span><span class="op">(</span><span class="va">from</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">d_latent</span> <span class="op">|&gt;</span></span>
-<span>              <span class="fu">rename</span><span class="op">(</span>to <span class="op">=</span> <span class="va">construct</span>, to_x <span class="op">=</span> <span class="va">x</span>, to_y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu">join_by</span><span class="op">(</span><span class="va">to</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span></span>
-<span>    start_x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="va">p_offset</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
-<span>    end_x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_offset</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
-<span>    start_y <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="va">p_offset</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
-<span>    end_y <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_offset</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Function to create a plot and replace arrows</span></span>
-<span><span class="va">mypath</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">arrow_head</span> <span class="op">=</span> <span class="fu">ggarrow</span><span class="fu">::</span><span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/arrow_ornaments.html" class="external-link">arrow_head_wings</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                   <span class="va">node_radius</span> <span class="op">=</span> <span class="fl">.15</span>,</span>
-<span>                   <span class="va">path_offset</span> <span class="op">=</span> <span class="fl">.03</span>,</span>
-<span>                   <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">p_offset</span> <span class="op">&lt;-</span> <span class="va">node_radius</span> <span class="op">+</span> <span class="va">path_offset</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d_edge</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">start_x</span>,</span>
-<span>    y <span class="op">=</span> <span class="va">start_y</span>,</span>
-<span>    xend <span class="op">=</span> <span class="va">end_x</span>,</span>
-<span>    yend <span class="op">=</span> <span class="va">end_y</span></span>
-<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_circle</span><span class="op">(</span></span>
-<span>      data <span class="op">=</span> <span class="va">d_latent</span>,</span>
-<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>        x0 <span class="op">=</span> <span class="va">x</span>,</span>
-<span>        y0 <span class="op">=</span> <span class="va">y</span>,</span>
-<span>        r <span class="op">=</span> <span class="va">node_radius</span>,</span>
-<span>        fill <span class="op">=</span> <span class="va">construct</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      color <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>      inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span></span>
-<span>      data <span class="op">=</span> <span class="va">d_latent</span>,</span>
-<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">construct</span><span class="op">)</span>,</span>
-<span>      size <span class="op">=</span> <span class="fl">18</span>,</span>
-<span>      inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>      color <span class="op">=</span> <span class="st">"gray20"</span></span>
-<span>      </span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span></span>
-<span>      option <span class="op">=</span> <span class="st">"D"</span>,</span>
-<span>      begin <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span>      end <span class="op">=</span> <span class="fl">.8</span>,</span>
-<span>      alpha <span class="op">=</span> <span class="fl">.5</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow_segment.html" class="external-link">geom_arrow_segment</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">arrow_head</span>, <span class="va">...</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_circle</span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>        x0 <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
-<span>        y0 <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
-<span>        r <span class="op">=</span> <span class="fl">.042</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      fill <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>      color <span class="op">=</span> <span class="cn">NA</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
-<span>        x <span class="op">=</span> <span class="va">from_x</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_x</span> <span class="op">-</span> <span class="va">from_x</span><span class="op">)</span>,</span>
-<span>        y <span class="op">=</span> <span class="va">from_y</span> <span class="op">+</span> <span class="fl">.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">to_y</span> <span class="op">-</span> <span class="va">from_y</span><span class="op">)</span>,</span>
-<span>        label <span class="op">=</span> <span class="va">value</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      size <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>      color <span class="op">=</span> <span class="st">"gray20"</span></span>
-<span>      </span>
-<span>    <span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-</div>
-<div class="section level1">
-<h1 id="default-arrowhead-from-ggarrow">Default Arrowhead from ggarrow<a class="anchor" aria-label="anchor" href="#default-arrowhead-from-ggarrow"></a>
-</h1>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-defaultarrow-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="skinny-sharp-deltoid">Skinny Sharp Deltoid<a class="anchor" aria-label="anchor" href="#skinny-sharp-deltoid"></a>
-</h1>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, length_head <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-skinnysharpdeltoid-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="skinny-rounded-deltoid">Skinny Rounded Deltoid<a class="anchor" aria-label="anchor" href="#skinny-rounded-deltoid"></a>
-</h1>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">2.7</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-skinnyrounddeltoid-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="rounded-spade">Rounded spade<a class="anchor" aria-label="anchor" href="#rounded-spade"></a>
-</h1>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_hypotrochoid.html">arrow_head_deltoid</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-spade-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="sharp-barbs">Sharp Barbs<a class="anchor" aria-label="anchor" href="#sharp-barbs"></a>
-</h1>
-<p>Mimics the <code>latex'</code> arrowhead from <a href="https://tikz.dev/tikz-arrows" class="external-link">tikz.arrows</a></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="reference/figures/README-latexprime-1.png" width="100%"></p>
-<p>Mimics the regular <code>latex</code> arrowhead from tikz.arrows</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>undercontrols <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="reference/figures/README-latexarrow-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="arrowhead-from-a-function">Arrowhead from a function<a class="anchor" aria-label="anchor" href="#arrowhead-from-a-function"></a>
-</h1>
-<p>You can plot any function you want…</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_function.html">arrow_head_function</a></span><span class="op">(</span><span class="va">dnorm</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-dnorm-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="bezier-curves">Bezier Curves<a class="anchor" aria-label="anchor" href="#bezier-curves"></a>
-</h1>
-<p>A list of bezier control points can make almost any shape.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span></span>
-<span><span class="co"># A list of bezier curve control points</span></span>
-<span><span class="va">enterprise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, </span>
-<span>                     <span class="fl">.5</span>, <span class="fl">.3</span>, </span>
-<span>                     <span class="fl">0</span>, <span class="fl">.3</span><span class="op">)</span>,</span>
-<span>                   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.3</span>, </span>
-<span>                     <span class="fl">.80</span>, <span class="op">-</span><span class="fl">.125</span>, </span>
-<span>                     <span class="fl">.075</span>, <span class="op">-</span><span class="fl">.3</span><span class="op">)</span>,</span>
-<span>                   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.075</span>, <span class="op">-</span><span class="fl">.3</span>, </span>
-<span>                     <span class="fl">.5</span>, <span class="op">-</span><span class="fl">.3</span>, </span>
-<span>                     <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/arrow_head_bezier.html">arrow_head_bezier</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-startrek-1.png" width="100%"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">mypath</span><span class="op">(</span><span class="va">enterprise</span>, length_head <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-startrek-2.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="nudging">Nudging<a class="anchor" aria-label="anchor" href="#nudging"></a>
-</h1>
-<p>The arrowheads can be nudged in the x and y axes with a length 2 vector. For example, the <code>arrow_head_harpoon</code> function by default is centered on the line, which does not look good.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_harpoon.html">arrow_head_harpoon</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-nudging0-1.png" width="100%"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://teunbrand.github.io/ggarrow/reference/geom_arrow.html" class="external-link">geom_arrow</a></span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">xy</span>, length_head <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-nudging0-2.png" width="100%"></p>
-<p>Depending on the <code>linewidth</code> and <code>length_head</code>, we can nudge the harpoon downward so that it looks like a harpoon.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="fu"><a href="reference/arrow_head_harpoon.html">arrow_head_harpoon</a></span><span class="op">(</span>nudge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">.06</span><span class="op">)</span><span class="op">)</span>, length_head <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-nudging1-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="rescaling">Rescaling<a class="anchor" aria-label="anchor" href="#rescaling"></a>
-</h1>
-<p>The arrowheads can be rescaled like so:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>rescale <span class="op">=</span> <span class="fl">.6</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-rescaling1-1.png" width="100%"></p>
-<p>By combining rescaling with nudging, we can separate the arrowhead from the line:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>rescale <span class="op">=</span> <span class="fl">.6</span>,</span>
-<span>                       nudge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>                       plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-rescaling2-1.png" width="100%"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span><span class="va">xy</span>, length_head <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-rescaling2-2.png" width="100%"></p>
-<p>The rescaling can be different on the x and y dimensions. Here we decrease the width by half and increase the height by half.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>rescale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">1.5</span><span class="op">)</span>, plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-rescaling3-1.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="rotating">Rotating<a class="anchor" aria-label="anchor" href="#rotating"></a>
-</h1>
-<p>Here I put the rotated arrowhead into the head and fin of the arrow. The rotation is in radians, not degrees.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/arrow_head_latex.html">arrow_head_latex</a></span><span class="op">(</span>rotate <span class="op">=</span> <span class="va">pi</span>,</span>
-<span>                       nudge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.4</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>                       plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-rotating-1.png" width="100%"></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mypath</span><span class="op">(</span>arrow_head <span class="op">=</span> <span class="va">xy</span>, arrow_fins <span class="op">=</span> <span class="va">xy</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-rotating-2.png" width="100%"></p>
-</div>
-<div class="section level1">
-<h1 id="reflecter-function">Reflecter function<a class="anchor" aria-label="anchor" href="#reflecter-function"></a>
-</h1>
-<p>Because most arrowheads are symmetric, we can design one half of the arrowhead and then duplicate the other half in reverse order. The <code>reflector</code> function takes a matrix, reverses the sign of the y values, and reorders the rows, and adds the reflected matrix to the original matrix.</p>
-<p>Here, I supply the bezier controls for just the top half of the arrow, the <code>arrow_head_bezier</code> function creates the polygon points for the top half, and the <code>reflecter</code> function adds the mirror image points below to the polygon symmetric.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">myarrow</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.0</span>, <span class="fl">.00</span>,</span>
-<span>                  <span class="fl">.65</span>, <span class="fl">.25</span>,</span>
-<span>                  <span class="fl">.40</span>, <span class="fl">.37</span>,</span>
-<span>                  <span class="fl">.00</span>, <span class="fl">.40</span><span class="op">)</span>,</span>
-<span>                <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.00</span>, <span class="fl">.40</span>,</span>
-<span>                  <span class="fl">.00</span>, <span class="fl">.00</span>,</span>
-<span>                 <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">.00</span><span class="op">)</span>,</span>
-<span>               <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.0</span>, <span class="fl">.00</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="reference/arrow_head_bezier.html">arrow_head_bezier</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="reference/reflecter.html">reflecter</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="fu"><a href="reference/plot_arrowhead.html">plot_arrowhead</a></span><span class="op">(</span><span class="va">myarrow</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-reflecting-1.png" width="100%"></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">mypath</span><span class="op">(</span><span class="va">myarrow</span>, length_head <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-reflecting-2.png" width="100%"></p>
+<span><span class="fu">ggdiagram</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="va">A</span> <span class="op">+</span> </span>
+<span>  <span class="va">B</span> <span class="op">+</span> </span>
+<span>  <span class="co"># Arrows from A to B</span></span>
+<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="co"># Straight arrows from B to adjacent B</span></span>
+<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">B</span><span class="op">@</span><span class="va">north</span>, <span class="va">B</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">south</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="co"># Arc arrows from B to adjacent B</span></span>
+<span>  <span class="fu">connect</span><span class="op">(</span><span class="va">B</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">east</span>, <span class="va">B</span><span class="op">@</span><span class="va">east</span>, arc_bend <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, resect <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" style="width:100.0%"></p>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
@@ -434,7 +155,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=arrowheadr" class="external-link"><img src="https://www.r-pkg.org/badges/version/arrowheadr" alt="CRAN status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=arrowheadr" class="external-link"><img src="https://www.r-pkg.org/badges/version/arrowheadr.png" alt="CRAN status"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://app.codecov.io/gh/wjschne/arrowheadr?branch=master" class="external-link"><img src="https://codecov.io/gh/wjschne/arrowheadr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/wjschne/arrowheadr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/wjschne/arrowheadr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
@@ -450,7 +171,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
