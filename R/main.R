@@ -1079,7 +1079,7 @@ arrow_head_function <- function(.fun = stats::dnorm,
 #'
 #' A list of pre-built arrowheads
 #'
-#' @format ## `arrowheads`
+#' @format ## Structure
 #' A list of matrices with xy coordinates
 #' \describe{
 #'   \item{chippenham}{Chippenham arrowhead}

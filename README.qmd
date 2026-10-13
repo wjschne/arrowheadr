@@ -58,43 +58,62 @@ install.packages("arrowheadr", repos = c('https://wjschne.r-universe.dev'))
 The ggarrow package makes it possible to create a wide variety of arrows. The arrowheadr package makes it easy to create custom arrowheads.
 
 ```{r}
-tibble(theta = seq(0,300, 60) * pi / 180,
-           x = cos(theta),
-           y = sin(theta)) |>
+#| label: fig-arrow
+#| fig-cap: Using arrowheadr with ggarrow
+#| fig-alt: Arrows pointing outward from a common point
+tibble(
+  theta = seq(0, 300, 60) * pi / 180,
+  x = cos(theta),
+  y = sin(theta)
+) |>
   ggplot(aes(x, y)) +
-  coord_equal() + 
-  geom_arrow_segment(aes(xend = x, yend = y, x = 0, y = 0), arrow_head = arrow_head_deltoid(), resect = 2)
+  coord_equal() +
+  geom_arrow_segment(aes(
+    xend = x,
+    yend = y,
+    x = 0,
+    y = 0
+  ),
+  arrow_head = arrow_head_deltoid(),
+  resect = 2)
 ```
 
 The ggdiagram package also uses arrowheadr and ggarrow under the hood.
 
 ```{r}
+#| label: fig-ggdiagram
+#| fig-cap: Using arrowheadr with ggdiagram
+#| fig-alt: Rectangle arranged in a circle, connected with arrows
 # Make a circle
-A <- ob_circle(center = ob_point(0, 0),
-                  radius = 1)
+A <- ob_circle(center = ob_point(0, 0), radius = 1)
 
 # Make angles evenly spaced around a circle
-theta <- degree(seq(0,330, 30))
+theta <- degree(seq(0, 330, 30))
 
 # Make ring of points around the circle
-p <- ob_point() |> 
-  place(from = A, 
-        where = theta,
-        sep = 2)
+p <- ob_point() |>
+  place(from = A, where = theta, sep = 2)
 
 # Make rotated squares
 B <- ob_rectangle(center = p, angle = theta)
 
 
-ggdiagram() + 
-  A + 
-  B + 
+ggdiagram() +
+  A +
+  B +
   # Arrows from A to B
-  connect(A, B, resect = 2) + 
+  connect(A, 
+          B, 
+          resect = 2) +
   # Straight arrows from B to adjacent B
-  connect(B@north, B[c(2:12, 1)]@south, resect = 2) + 
+  connect(B@north, 
+          B[c(2:12, 1)]@south, 
+          resect = 2) +
   # Arc arrows from B to adjacent B
-  connect(B[c(2:12, 1)]@east, B@east, arc_bend = -1, resect = 2)
+  connect(B[c(2:12, 1)]@east, 
+          B@east, 
+          arc_bend = -1, 
+          resect = 2)
 ```
 
 

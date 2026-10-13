@@ -5,7 +5,7 @@
 \alias{arrowheads}
 \title{Arrowheads}
 \format{
-\subsection{\code{arrowheads}}{
+\subsection{Structure}{
 
 A list of matrices with xy coordinates
 \describe{
